@@ -12,10 +12,14 @@ Hence the difference between the sum of the squares of the first ten natural num
 Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 -}
 
+l :: [Integer]
 l = [1..100]
 
+sum_of_squares :: Integer
 sum_of_squares = sum $ map (^2) l
 
+square_of_sum :: Integer
 square_of_sum = (^2) $ sum l
 
-diff = abs $ square_of_sum - sum_of_squares
+main = do
+	(putStrLn . show) $ abs $ square_of_sum - sum_of_squares
