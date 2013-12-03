@@ -10,4 +10,4 @@ primes_under :: [Integer]
 primes_under = takeWhile (\x -> x < 2000000) primes
 
 main = do
-  (putStrLn . show) sum primes_under
+  (putStrLn . show) $ sum primes_under
