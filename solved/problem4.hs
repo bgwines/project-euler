@@ -4,22 +4,22 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 Find the largest palindrome made from the product of two 3-digit numbers.
 -}
 
-is_palindrome :: (Eq e) => [e] -> Bool
-is_palindrome s
-	| length s <= 1 = True
-	| otherwise =
-		(head s == last s)
-		&&
-		(is_palindrome $ tail $ init s)
+import List
 
---forms_mult_palindrome_pair :: (Show x, Num x, Show y, Num y) => (x,y) -> Bool
+forms_mult_palindrome_pair :: (Integer, Integer) -> Bool
 forms_mult_palindrome_pair (a,b) = is_palindrome $ show $ a * b
 
+nums :: [Integer]
 nums = [100..999]
+
+pairs :: [(Integer, Integer)]
 pairs = [(a,b) | a <- nums, b <- nums]
 
-mult_palindrome_pairs =
-	filter forms_mult_palindrome_pair pairs
+mult_palindrome_pairs :: [(Integer, Integer)]
+mult_palindrome_pairs = filter forms_mult_palindrome_pair pairs
 
+mults :: [Integer]
 mults = [a*b | (a,b) <- mult_palindrome_pairs]
-m = maximum mults
+
+main = do
+	(putStrLn . show) $ maximum mults

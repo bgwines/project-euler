@@ -9,11 +9,23 @@ module List
 , get_splice_pair
 , is_palindrome
 , fill_set
+, fst3
+, snd3
+, trd3
 ) where
 
 import qualified Data.List
 import qualified Data.Ord
 import qualified Data.Set as Set
+
+fst3 :: (a, a, a) -> a
+fst3 (a, b, c) = a
+
+snd3 :: (a, a, a) -> a
+snd3 (a, b, c) = b
+
+trd3 :: (a, a, a) -> a
+trd3 (a, b, c) = c
 
 fill_set :: [Integer] -> Set.Set Integer
 fill_set l = fill_set_rec Set.empty l
@@ -56,7 +68,7 @@ substr i len s = take (fromInteger len) $ drop (fromInteger i) s
 
 maximum_with_index :: (Ord a) => [a] -> (a, Integer)
 maximum_with_index xs =
-	Data.List.maximumBy (Data.Ord.comparing fst) (zip xs [0..])
+    Data.List.maximumBy (Data.Ord.comparing fst) (zip xs [0..])
 
 --merge :: (Ord a) => [a] -> [a] -> [a]
 --merge xs@(x:xt) ys@(y:yt) = 
@@ -75,15 +87,15 @@ mergesort l
 
 merge :: (Ord a) => [a] -> [a] -> [a]
 merge a b
-	| length a == 0 = b
-	| length b == 0 = a
-	| otherwise = case (head a < head b) of
-	                True  -> head a : merge (tail a) b
-	                False -> head b : merge a (tail b)
+    | length a == 0 = b
+    | length b == 0 = a
+    | otherwise = case (head a < head b) of
+                    True  -> head a : merge (tail a) b
+                    False -> head b : merge a (tail b)
 
 diff :: (Ord a) => [a] -> [a] -> [a]
 diff xs@(x:xt) ys@(y:yt) = 
-	case compare x y of
-		LT -> x : (diff xt ys)
-		EQ -> diff xt yt
-		GT -> diff xs yt
+    case compare x y of
+        LT -> x : (diff xt ys)
+        EQ -> diff xt yt
+        GT -> diff xs yt
