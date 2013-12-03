@@ -10,6 +10,7 @@ Find the product abc.
 -}
 
 import Data.List
+import List
 
 triplets :: [(Integer, Integer, Integer)]
 triplets = [(a,b,c) | 
