@@ -95,7 +95,7 @@ merge a b
 
 diff :: (Ord a) => [a] -> [a] -> [a]
 diff xs@(x:xt) ys@(y:yt) = 
-    case compare x y of
-        LT -> x : (diff xt ys)
-        EQ -> diff xt yt
-        GT -> diff xs yt
+  case compare x y of
+    LT -> x : (diff xt ys)
+    EQ -> diff xt yt
+    GT -> diff xs yt
