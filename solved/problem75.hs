@@ -19,18 +19,25 @@ import Data.List
 
 ub = 1500000 
 
+is_square :: Integer -> Bool
+is_square n = is_int $ sqrt (fromIntegral n)
+
 is_int :: (RealFrac a) => a -> Bool
 is_int n = n == (fromInteger $ round n)
 
+squares :: [Integer]
+squares = map (^2) [1..]
+
+--get_right_triangle_trios :: Integer -> [(Integer, Integer, Integer)]
+get_right_triangle_trios c = 
+	map
+		(\a -> (sqrt $ fromIntegral a, sqrt $ fromIntegral ((c^2)-a), c))
+		$ filter (\a -> is_square ((c^2)-a)) $ takeWhile (< (div (c^2) 2)) squares
+
 valid_perimeters :: [Integer]
-valid_perimeters = 
-	takeWhile
-		(< ub)
-		[round (a + b + c) | 
-			a <- [1..], 
-			b <- [1..a], 
-			c <- [sqrt (a^2 + b^2)],
-			is_int c]
+valid_perimeters = map
+	(map (\(a, b, c) -> a + b + c))
+	$ map get_right_triangle_trios [1..100]
 
 single_count_perimeters :: [Integer]
 single_count_perimeters = 
@@ -38,5 +45,7 @@ single_count_perimeters =
 		(\l -> length l == 1) 
 		$ (group . sort) $ valid_perimeters
 
-main = do
-	(putStrLn . show) $ length single_count_perimeters
+sought = length single_count_perimeters
+
+--main = do
+--	(putStrLn . show)

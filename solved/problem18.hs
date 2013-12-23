@@ -5,7 +5,7 @@ graph =[[75], [95,64], [17,47,82], [18,35,87,10], [20,04,82,47,65], [19,01,23,75
 calc_max_path_totals_for_row :: [Integer] -> [Integer] -> [Integer]
 calc_max_path_totals_for_row row prev_row = 
     zipWith max l_sums r_sums
-    where l_sums = (zipWith (+) (init row) prev_row) ++ [0]
+    where l_sums =        (zipWith (+) (init row) prev_row) ++ [0]
           r_sums = [0] ++ (zipWith (+) (tail row) prev_row)
 
 -- parallel to graph
@@ -17,3 +17,6 @@ max_path_totals = [head graph] ++
         max_path_totals
 
 sought = maximum $ last max_path_totals
+
+main = do
+	putStrLn $ show sought

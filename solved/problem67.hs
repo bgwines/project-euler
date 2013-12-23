@@ -5,7 +5,7 @@ graph =[[59],[73,41],[52,40,09],[26,53,06,34],[10,51,87,86,81],[61,95,66,57,25,6
 calc_max_path_totals_for_row :: [Integer] -> [Integer] -> [Integer]
 calc_max_path_totals_for_row row prev_row = 
     zipWith max l_sums r_sums
-    where l_sums = (zipWith (+) (init row) prev_row) ++ [0]
+    where l_sums =        (zipWith (+) (init row) prev_row) ++ [0]
           r_sums = [0] ++ (zipWith (+) (tail row) prev_row)
 
 -- parallel to graph
