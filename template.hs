@@ -1,7 +1,7 @@
 {-
 -}
 
-import List
+import Euler
 import qualified Data.List
 import qualified Data.Ord
 

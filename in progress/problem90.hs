@@ -29,9 +29,10 @@ cubes :: [[Integer]]
 cubes = filter (\l -> (length l) == 6) $ powerset [0..9]
 
 cube_pairs :: [([Integer], [Integer])]
-cube_pairs = [(a, b) | a <- cubes, b <- cubes, a <= b]
+cube_pairs = [(a, b) | a <- cubes, b <- cubes]
 
 valid_pairs :: [([Integer], [Integer])]
 valid_pairs = filter displays_all_squares cube_pairs
 
-sought = length valid_pairs
+main = do
+	putStrLn $ show $ length valid_pairs

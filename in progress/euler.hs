@@ -3,12 +3,17 @@ module Euler
 , gen_perms
 , gen_cycles
 , powerset
+, gen_subsets_of_size
 , merge
 , mergesort
 , factorize
 , euler_phi
 , is_power
+, is_int
+, to_int
 , get_num_digits
+, map_keep
+, uniqueify
 , find
 , find_guaranteed
 , maximum_with_index
@@ -22,13 +27,34 @@ module Euler
 , trd3
 , fromRealFrac
 , from_just
+, pair
+, triple
+, length'
 ) where
 
-import qualified Data.List
-import qualified Data.Ord
+import qualified Data.List as List
+import qualified Data.Ord as Ord
 import qualified Data.Set as Set
 import qualified Data.MemoCombinators as Memo
 import Prime
+
+uniqueify :: (Ord a) => [a] -> [a]
+uniqueify = Set.elems . Set.fromList
+
+length' :: [a] -> Integer
+length' = toInteger . length
+
+to_int :: Double -> Integer
+to_int = (toInteger . round)
+
+triple :: a -> b -> c -> (a, b, c)
+triple a b c = (a, b, c)
+
+pair :: a -> b -> (a, b)
+pair a b = (a, b)
+
+map_keep :: (a -> b) -> [a] -> [(a, b)]
+map_keep f l = zipWith pair l (map f l)
 
 cycle_list :: [a] -> [a]
 cycle_list l = (tail l) ++ [head l]
@@ -84,7 +110,7 @@ euler_phi 1 = 0
 euler_phi n = product 
     $ map
         euler_phi_for_powers_of_primes
-        $ map format $ Data.List.group $ factorize n
+        $ map format $ List.group $ factorize n
     where
         format l = (head l, (toInteger . length) l) 
 
@@ -107,14 +133,37 @@ find f l = case f $ head l of
     False -> find f $ tail l
 
 powerset_rec :: [a] -> [a] -> [[a]]
-powerset_rec src so_far
-    | (length src == 0) = [so_far]
-    | otherwise = without ++ with
+powerset_rec [] so_far = [so_far]
+powerset_rec src so_far = without ++ with
     where without = powerset_rec (tail src) (so_far)
           with = powerset_rec (tail src) ((head src) : so_far)
 
 powerset :: [a] -> [[a]]
 powerset l = powerset_rec l []
+
+gen_subsets_of_size_rec :: [a] -> [a] -> Integer -> [[a]]
+gen_subsets_of_size_rec src so_far size =
+    case size == 0 of
+        True  -> [so_far]
+        False -> if (length src) == 0
+            then []
+            else without ++ with
+    where without = gen_subsets_of_size_rec (tail src) so_far size
+          with    = gen_subsets_of_size_rec (tail src) ((head src) : so_far) (size-1)
+
+gen_subsets_of_size :: [a] -> Integer -> [[a]]
+gen_subsets_of_size l size = gen_subsets_of_size_rec l [] size
+
+{-gen_subsets_of_size_with_replacement_rec :: Integer -> [a] -> [a] -> [[a]]
+gen_subsets_of_size_with_replacement_rec size src so_far =
+    case size == 0 of
+        True  -> [so_far]
+        False -> concat [map (e:) rec | e <- src]
+        where rec = gen_subsets_of_size_with_replacement_rec (size - 1)
+
+gen_subsets_of_size_with_replacement :: [a] -> Integer -> [[a]]
+gen_subsets_of_size_with_replacement l size =
+    gen_subsets_of_size_with_replacement_rec size l []-}
 
 fst3 :: (a, a, a) -> a
 fst3 (a, b, c) = a
@@ -132,6 +181,8 @@ fill_set_rec :: Set.Set Integer -> [Integer] -> Set.Set Integer
 fill_set_rec s [] = s
 fill_set_rec s l = Set.insert (head l) (fill_set_rec s $ tail l)
 
+is_int :: Double -> Bool
+is_int x = x == (fromInteger (round x))
 
 is_palindrome :: (Eq e) => [e] -> Bool
 is_palindrome s
@@ -166,7 +217,7 @@ substr i len s = take (fromInteger len) $ drop (fromInteger i) s
 
 maximum_with_index :: (Ord a) => [a] -> (a, Integer)
 maximum_with_index xs =
-	Data.List.maximumBy (Data.Ord.comparing fst) (zip xs [0..])
+	List.maximumBy (Ord.comparing fst) (zip xs [0..])
 
 --merge :: (Ord a) => [a] -> [a] -> [a]
 --merge xs@(x:xt) ys@(y:yt) = 
