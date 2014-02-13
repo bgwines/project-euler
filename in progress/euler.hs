@@ -11,6 +11,7 @@ module Euler
 , is_power
 , is_int
 , to_int
+, divides
 , get_num_digits
 , map_keep
 , uniqueify
@@ -72,6 +73,9 @@ is_power n e = (round (fromIntegral n ** (1/(fromInteger e))))^e == n
 
 get_num_digits :: Integer -> Integer
 get_num_digits n = (1 + (floor $ logBase 10 (fromInteger n)))
+
+divides :: Integer -> Integer -> Bool
+divides n x = (n `mod` x) == 0
 
 divides_both :: Integer -> Integer -> Integer -> Bool
 divides_both d n m = (n `mod` d == 0) && (m `mod` d == 0)
