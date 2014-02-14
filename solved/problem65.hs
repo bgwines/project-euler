@@ -14,7 +14,7 @@
 
                a     a' + (a'' / k)     ka' + a''
         T_n =  -  =  --------------  =  ---------
-               b     b' + (b'' / k)	    kb' + b''
+               b     b' + (b'' / k)     kb' + b''
 -}
 
 import qualified Data.Char as Char
