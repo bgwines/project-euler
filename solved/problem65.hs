@@ -28,10 +28,10 @@ calc_term k (a', b') (a'', b'') = (a, b)
 		a = (k * a') + a''
 		b = (k * b') + b''
 
--- fs    : functions with 0 args applied
--- fks   : functions with the 1st arg applied
--- fs''  : functions with the 2st arg applied, too
--- fs''' : functions with the 3st arg applied, too
+-- fs   : functions with 0 args applied
+-- fks  : functions with the 1st arg applied
+-- fs'  : functions with the 2st arg applied, too
+-- fs' : functions with the 3st arg applied, too
 terms :: [(Integer, Integer)]
 terms = (2, 1) : (3, 1) : (drop 1 fs'') -- drop 1 because of offset in fs''' (see below)
 	where
