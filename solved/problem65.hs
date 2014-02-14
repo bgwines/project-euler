@@ -12,9 +12,9 @@
 		b'' = b_(T_(n-2))
 	in
 
-			  a' + (a'' / k)		ka' + a''
-		T_n = -------------		=	---------
-			  b' + (b'' / k)		kb' + b''
+               a     a' + (a'' / k)     ka' + a''
+        T_n =  -  =  --------------  =  ---------
+               b     b' + (b'' / k)	    kb' + b''
 -}
 
 import qualified Data.Char as Char
@@ -28,17 +28,18 @@ calc_term k (a', b') (a'', b'') = (a, b)
 		a = (k * a') + a''
 		b = (k * b') + b''
 
--- fs    is the functions with 0 args applied
--- fs'   is the functions with the 1st arg applied
--- fs''  is the functions with the 2st arg applied, too
--- fs''' is the functions with the 3st arg applied, too (i.e. fully evaluated functions)
+-- fs    : functions with 0 args applied
+-- fks   : functions with the 1st arg applied
+-- fs''  : functions with the 2st arg applied, too
+-- fs''' : functions with the 3st arg applied, too
 terms :: [(Integer, Integer)]
-terms = (2, 1) : (3, 1) : (drop 1 fs''') -- drop 1 because of offset in fs''' (see below)
+terms = (2, 1) : (3, 1) : (drop 1 fs'') -- drop 1 because of offset in fs''' (see below)
 	where
-		fs    = repeat calc_term
-		fs'   = zipWith ($) fs   coeff_seq
-		fs''  = zipWith ($) fs'  terms
-		fs''' = zipWith ($) fs'' ((0, 0) : terms) -- prepend to offset to get (a'', b'')
+		fs   = repeat calc_term
+		fks  = zipWith ($) fs  coeff_seq        -- apply k_i to f_i
+		fs'  = zipWith ($) fks terms            -- apply T_(i-1) = (a' , b' ) to f_i
+		fs'' = zipWith ($) fs' ((0, 0) : terms) -- apply T_(i-2) = (a'', b'') to f_i
+												-- (prepend (0, 0) to offset to get (a'', b''))
 
 sum_digits :: Integer -> Integer
 sum_digits = toInteger . sum . map Char.digitToInt . show
