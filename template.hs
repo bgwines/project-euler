@@ -7,4 +7,4 @@ import qualified Data.Ord as Ord
 import qualified Data.MemoCombinators as Memo
 
 main = do
-	(putStrLn . show)
+	(putStrLn . show) $ 
