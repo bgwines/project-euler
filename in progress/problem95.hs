@@ -22,12 +22,10 @@ sentinel = -1
 repeaters = [1, 6]
 
 get_divisors :: Integer -> [Integer]
-get_divisors = init . uniqueify . map product . powerset . factorize
+get_divisors = Memo.integral get_divisors'
+	where get_divisors' = init . uniqueify . map product . powerset . factorize
 
-sum_divisors :: Integer -> Integer
-sum_divisors n = sum $ get_divisors n
-
-cut_at_cycle_rec :: (Ord a) => Set.Set a -> [a] -> [a]
+{-cut_at_cycle_rec :: (Ord a) => Set.Set a -> [a] -> [a]
 cut_at_cycle_rec s l = 
 	case e `Set.member` s of
 		True -> []
@@ -35,24 +33,22 @@ cut_at_cycle_rec s l =
 		where e = head l
 
 cut_at_cycle :: (Ord a) => [a] -> [a]
-cut_at_cycle l = cut_at_cycle_rec Set.empty l
-
-calc_chain_rec'' :: Integer -> [Integer]
-calc_chain_rec'' n
-	| n > 1000000 = [sentinel]
-	| n `elem` repeaters = [sentinel]
-	| otherwise = n : (calc_chain_rec' $ sum_divisors n)
-
-calc_chain_rec' = cut_at_cycle calc_chain_rec''
+cut_at_cycle l = cut_at_cycle_rec Set.empty l-}
 
 calc_chain_rec :: Integer -> [Integer]
-calc_chain_rec = Memo.integral calc_chain_rec'
+calc_chain_rec n
+	| n > 1000000 = [sentinel]
+	| n `elem` repeaters = [n, sentinel]
+	| otherwise = n : (calc_chain . sum . get_divisors $ n)
+
+--calc_chain_rec' = cut_at_cycle calc_chain_rec''
 
 calc_chain :: Integer -> [Integer]
-calc_chain n = n : (takeWhile ((/=) n) $ tail (calc_chain_rec n))
+calc_chain = Memo.integral calc_chain'
+	where calc_chain' n = n : (takeWhile ((/=) n) $ tail (calc_chain_rec n))
 
 chains :: [[Integer]]
-chains = map calc_chain [1..1000000]
+chains = map calc_chain [1..1000000] 
 
 main = do
 	(putStrLn . show . minimum . List.maximumBy (Ord.comparing length)) chains
