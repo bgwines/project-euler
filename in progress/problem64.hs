@@ -22,18 +22,11 @@ import qualified Data.List as List
 import qualified Data.Ord as Ord
 import qualified Data.MemoCombinators as Memo
 
-irr_squares :: [Double]
-irr_squares = filter (not . is_int . sqrt) [1..10000] 
-
-calc_continued_fraction :: Double -> X
-calc_continued_fraction n = X
-
-is_odd_period :: X -> Bool
-is_odd_period cont_frac = True
-
-odd_period_continued_fractions :: [Double]
-odd_period_continued_fractions = 
-	filter (is_odd_period . calc_continued_fraction) irr_squares
+odd_period_continued_fraction_sqrts :: [Integer]
+odd_period_continued_fraction_sqrts = 
+	filter (is_odd_period . continued_fraction_sqrt) irr_squares
+		where
+			is_odd_period = odd . length . tail
 
 main = do
-	(putStrLn . show) $ length odd_period_continued_fractions
+	(putStrLn . show) $ length odd_period_continued_fraction_sqrts

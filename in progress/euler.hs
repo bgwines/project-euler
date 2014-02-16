@@ -31,6 +31,11 @@ module Euler
 , pair
 , triple
 , length'
+, tri_area
+, tri_area_double
+, take_while_keep_last
+, continued_fraction_sqrt
+, irr_squares
 ) where
 
 import qualified Data.List as List
@@ -38,6 +43,53 @@ import qualified Data.Ord as Ord
 import qualified Data.Set as Set
 import qualified Data.MemoCombinators as Memo
 import Prime
+
+irr_squares :: [Integer]
+irr_squares = map round $ filter (not . is_int . sqrt) [1..10000] 
+
+next_continued_fraction_sqrt :: (Integer, Integer, Integer, Integer, Integer) -> (Integer, Integer, Integer, Integer, Integer)
+next_continued_fraction_sqrt (d, m, a, a0, n) = (d', m', a', a0, n)
+    where
+        d' = (n - m'^2) `div` d
+        m' = (d * a)  - m
+        a' = floor $ (fromIntegral (a0 + m')) / (fromIntegral d')
+
+continued_fraction_sqrt :: Integer -> [Integer]
+continued_fraction_sqrt n =
+    take_while_keep_last (/= 2*a0)
+        $ map trd5
+            $ iterate next_continued_fraction_sqrt (d0, m0, a0, a0, n)
+    where
+        m0 = 0
+        d0 = 1
+        a0 = floor . sqrt . fromInteger $ n
+        trd5 (_, _, x, _, _) = x
+
+take_while_keep_last f [] = []
+take_while_keep_last f l = 
+    let
+        e = head l
+        l' = tail l
+    in
+        case f e of
+            False -> [e]
+            True -> e : take_while_keep_last f l'
+
+-- Heron's formula
+tri_area :: Integer -> Integer -> Integer -> Double
+tri_area a b c = 
+    sqrt $ p * (p-a') * (p-b') * (p-c')
+        where
+            a' = fromInteger a
+            b' = fromInteger b
+            c' = fromInteger c
+            p = (fromInteger (a + b + c)) / 2
+
+tri_area_double :: Double -> Double -> Double -> Double
+tri_area_double a b c = 
+    sqrt $ p * (p-a) * (p-b) * (p-c)
+        where
+            p = (a + b + c) / 2
 
 uniqueify :: (Ord a) => [a] -> [a]
 uniqueify = Set.elems . Set.fromList
@@ -84,7 +136,7 @@ euler_phi_rec :: Integer -> Integer -> Integer -> Integer
 euler_phi_rec n m count
     | (n == m) = count
     | (coprime n m) = euler_phi_rec n (m+1) (count+1)
-    | otherwise     = euler_phi_rec n (m+1) count
+    | otherwise  = euler_phi_rec n (m+1) count
 
 euler_phi_slow :: Integer -> Integer
 euler_phi_slow n = euler_phi_rec n 1 0
@@ -153,7 +205,7 @@ gen_subsets_of_size_rec src so_far size =
             then []
             else without ++ with
     where without = gen_subsets_of_size_rec (tail src) so_far size
-          with    = gen_subsets_of_size_rec (tail src) ((head src) : so_far) (size-1)
+          with  = gen_subsets_of_size_rec (tail src) ((head src) : so_far) (size-1)
 
 gen_subsets_of_size :: [a] -> Integer -> [[a]]
 gen_subsets_of_size l size = gen_subsets_of_size_rec l [] size
@@ -226,9 +278,9 @@ maximum_with_index xs =
 --merge :: (Ord a) => [a] -> [a] -> [a]
 --merge xs@(x:xt) ys@(y:yt) = 
 --  case compare x y of
---    LT -> x : (merge xt ys)
---    EQ -> x : (merge xt yt)
---    GT -> y : (merge xs yt)
+--  LT -> x : (merge xt ys)
+--  EQ -> x : (merge xt yt)
+--  GT -> y : (merge xs yt)
 
 mergesort :: (Ord a) => [a] -> [a]
 mergesort l
@@ -243,8 +295,8 @@ merge a b
 	| length a == 0 = b
 	| length b == 0 = a
 	| otherwise = case (head a < head b) of
-	                True  -> head a : merge (tail a) b
-	                False -> head b : merge a (tail b)
+	            True  -> head a : merge (tail a) b
+	            False -> head b : merge a (tail b)
 
 diff :: (Ord a) => [a] -> [a] -> [a]
 diff xs@(x:xt) ys@(y:yt) = 
