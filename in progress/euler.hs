@@ -35,7 +35,9 @@ module Euler
 , tri_area_double
 , take_while_keep_last
 , continued_fraction_sqrt
+, continued_fraction_sqrt_infinite
 , irr_squares
+, sqrt_convergents
 ) where
 
 import qualified Data.List as List
@@ -43,6 +45,29 @@ import qualified Data.Ord as Ord
 import qualified Data.Set as Set
 import qualified Data.MemoCombinators as Memo
 import Prime
+
+sqrt_convergents_rec :: (Integer, Integer) -> (Integer, Integer) -> [Integer] -> [(Integer, Integer)]
+sqrt_convergents_rec (a'', b'') (a', b') cf =
+    (a, b) : sqrt_convergents_rec (a', b') (a, b) cf'
+        where
+            a = e * a' + a''
+            b = e * b' + b''
+            e = head cf
+            cf' = tail cf
+
+sqrt_convergents :: Integer -> [(Integer, Integer)]
+sqrt_convergents n =
+    (a0, b0) : (a1, b1) : 
+        sqrt_convergents_rec
+            (a0, b0)
+            (a1, b1)
+            (tail . tail $ cf)
+    where
+        (a0, b0) = (e, 1)
+        (a1, b1) = (e * e' + 1, e')
+        e = head cf
+        e' = head . tail $ cf
+        cf = continued_fraction_sqrt_infinite n
 
 irr_squares :: [Integer]
 irr_squares = map round $ filter (not . is_int . sqrt) [1..10000] 
@@ -54,16 +79,20 @@ next_continued_fraction_sqrt (d, m, a, a0, n) = (d', m', a', a0, n)
         m' = (d * a)  - m
         a' = floor $ (fromIntegral (a0 + m')) / (fromIntegral d')
 
-continued_fraction_sqrt :: Integer -> [Integer]
-continued_fraction_sqrt n =
-    take_while_keep_last (/= 2*a0)
-        $ map trd5
+continued_fraction_sqrt_infinite :: Integer -> [Integer]
+continued_fraction_sqrt_infinite n =
+        map trd5
             $ iterate next_continued_fraction_sqrt (d0, m0, a0, a0, n)
     where
         m0 = 0
         d0 = 1
         a0 = floor . sqrt . fromInteger $ n
         trd5 (_, _, x, _, _) = x
+
+continued_fraction_sqrt :: Integer -> [Integer]
+continued_fraction_sqrt n =
+    take_while_keep_last (/= 2*a0) $ continued_fraction_sqrt_infinite n
+        where a0 = floor . sqrt . fromInteger $ n
 
 take_while_keep_last f [] = []
 take_while_keep_last f l = 

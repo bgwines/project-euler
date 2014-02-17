@@ -25,21 +25,11 @@ import qualified Data.List as List
 import qualified Data.Ord as Ord
 import qualified Data.MemoCombinators as Memo
 
-(x0, y0)  = (1, 2)
-n = 3
-
-next :: (Integer, Integer) -> (Integer, Integer)
-next (x, y) = (x', y')
-	where
-		x' = x0*x + n*y0*y
-		y' = x0*y +   y0*x
-
-solves :: Integer -> Integer -> Bool
-solves d x = is_int . sqrt $ (fromIntegral (x^2 - 1)) / (fromIntegral d)
+solves :: Integer -> (Integer, Integer) -> Bool
+solves d (x, y) = (x^2 - (d * y^2)) == 1
 
 calc_minimal_sol_in_x :: Integer -> Integer
-calc_minimal_sol_in_x d = find_guaranteed (solves d) xs
-	where xs = [2..]
+calc_minimal_sol_in_x d = fst $ find_guaranteed (solves d) (sqrt_convergents d)
 
 ds_and_xs :: [(Integer, Integer)]
 ds_and_xs = map_keep calc_minimal_sol_in_x ds
@@ -48,4 +38,4 @@ ds_and_xs = map_keep calc_minimal_sol_in_x ds
 		is_square = is_int . sqrt . fromIntegral
 
 main = do
-	putStrLn . show $ List.maximumBy (Ord.comparing snd) ds_and_xs
+	putStrLn . show . fst . List.maximumBy (Ord.comparing snd) $ ds_and_xs
