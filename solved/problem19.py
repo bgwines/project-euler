@@ -13,7 +13,7 @@ def increment(year, month, day):
 def calc_num_days_in_month(year, month):
 	if month == 1: return 31
 	elif month == 2:
-		if year % 4 == 0:
+		if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
 			return 29
 		else:
 			return 28
