@@ -38,13 +38,57 @@ module Euler
 , continued_fraction_sqrt_infinite
 , irr_squares
 , sqrt_convergents
+, indexify
+, h
+, t
+, pairify
+, shuffle
+, random_integers
 ) where
 
 import qualified Data.List as List
 import qualified Data.Ord as Ord
 import qualified Data.Set as Set
 import qualified Data.MemoCombinators as Memo
+import System.Random
 import Prime
+
+random_integers :: (Integer, Integer) -> Integer -> [Integer]
+random_integers range seed = randomRs range . mkStdGen $ fromInteger seed
+
+shuffle' :: [a] -> [Integer] -> [a]
+shuffle' l indices =
+    map fst . List.sortBy (Ord.comparing snd) $ zip l indices
+
+
+shuffle :: [a] -> [a]
+shuffle l = shuffle' l randomness
+    where
+        randomness = prep (length l) $ random_integers (0, (length' l) - 1) 18726349
+
+        prep len l = reverse . take len $ prep' l []
+
+        prep' [] seen = []
+        prep' src seen =
+            case h src `elem` seen of
+                True ->           prep' (t src) seen
+                False -> h src : (prep' (t src) (h src : seen))
+
+pairify :: [a] -> [(a, a)]
+pairify l = (a, b) : pairify l'
+    where
+        a = head l
+        b = head . tail $ l
+        l' = tail . tail $ l
+
+h :: [a] -> a
+h = head
+
+t :: [a] -> [a]
+t = tail
+
+indexify :: [a] -> [(Integer, a)]
+indexify = zipWith (\a b -> (a, b)) [1..]
 
 sqrt_convergents_rec :: (Integer, Integer) -> (Integer, Integer) -> [Integer] -> [(Integer, Integer)]
 sqrt_convergents_rec (a'', b'') (a', b') cf =

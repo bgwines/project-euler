@@ -1,4 +1,6 @@
 
+import Euler
+
 fact n = product [1..n]
 
 f const_e e len =
@@ -24,17 +26,6 @@ calc_updated_index desired_index splice_index src =
 	desired_index - (splice_index) * (fact $ length src - 1)
 
 get_splice_pair i l = (l !! i, splice_out i l)
-
-gen_perms :: [a] -> [[a]]
-gen_perms l
-    | (length l <= 1) = [l]
-    | otherwise = 
-        let splice_pairs = [get_splice_pair i l | i <- [0..((length l) - 1)]]
-        in
-        concat [
-            [fst splice_pair : recpair | recpair <- gen_perms $ snd splice_pair]
-            | splice_pair <- splice_pairs
-        ]
 
 desired_index = 15
 src = [1..5]
