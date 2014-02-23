@@ -31,8 +31,6 @@ module Euler
 , pair
 , triple
 , length'
-, drop'
-, take'
 , tri_area
 , tri_area_double
 , take_while_keep_last
@@ -46,8 +44,6 @@ module Euler
 , pairify
 , shuffle
 , random_integers
-, decyclify
-, get_divisors
 ) where
 
 import qualified Data.List as List
@@ -57,72 +53,13 @@ import qualified Data.MemoCombinators as Memo
 import System.Random
 import Prime
 
-get_divisors :: Integer -> [Integer]
-get_divisors = Memo.integral get_divisors'
-    where get_divisors' = init . uniqueify . map product . powerset . factorize
-
-alg1' :: (Eq a) => Integer -> [a] -> [a] -> Maybe Integer
-alg1' i _ [] = Nothing
-alg1' i [] _ = Nothing
-alg1' i l1 l2 = 
-    if (head l1) == (head l2) then
-        Just (i + 1) -- + 1 beacuse we start off with l1 = tail l
-    else
-        if tail l2 == [] then
-            Nothing
-        else
-            alg1' (i + 1) (tail l1) (tail . tail $ l2)
-
-alg2' :: (Eq a) => Integer -> [a] -> [a] -> Maybe Integer
-alg2' mu _  [] = Nothing
-alg2' mu [] _  = Nothing
-alg2' mu l1 l2 = 
-    if (head l1) == (head l2) then
-        Just mu
-    else
-        alg2' (mu + 1) (tail l1) (tail l2)
-
-alg3' :: (Eq a) => Integer -> [a] -> a -> Maybe Integer
-alg3' lambda [] e = Nothing
-alg3' lambda l e =
-    if (head l) == e then
-        Just lambda
-    else
-        alg3' (lambda + 1) (tail l) e
-
-alg1 :: (Eq a) => [a] -> [a] -> Maybe Integer
-alg1 = alg1' 0
-
-alg2 :: (Eq a) => [a] -> [a] -> Maybe Integer
-alg2 = alg2' 0
-
-alg3 :: (Eq a) => [a] -> a -> Maybe Integer
-alg3 = alg3' 1
-
-decyclify :: (Eq a) => [a] -> [a]
-decyclify l =
-    let
-        i       = alg1 (tail l) (tail . tail $ l)
-        i'      = from_just i
-
-        mu      = if (i  == Nothing) then Nothing else alg2 l (drop' i' l)
-        mu'     = fromInteger . from_just $ mu
-        mu''    = from_just mu
-
-        lambda  = if (mu == Nothing) then Nothing else alg3 (drop (mu' + 1) l) (l !! mu')
-        lambda' = from_just lambda
-    in
-        if lambda /= Nothing then
-            take' (lambda' + mu'') l
-        else
-            l
-
 random_integers :: (Integer, Integer) -> Integer -> [Integer]
 random_integers range seed = randomRs range . mkStdGen $ fromInteger seed
 
 shuffle' :: [a] -> [Integer] -> [a]
 shuffle' l indices =
     map fst . List.sortBy (Ord.comparing snd) $ zip l indices
+
 
 shuffle :: [a] -> [a]
 shuffle l = shuffle' l randomness
@@ -230,12 +167,6 @@ tri_area_double a b c =
 uniqueify :: (Ord a) => [a] -> [a]
 uniqueify = Set.elems . Set.fromList
 
-take' :: Integer -> [a] -> [a]
-take' = take . fromInteger
-
-drop' :: Integer -> [a] -> [a]
-drop' = drop . fromInteger
-
 length' :: [a] -> Integer
 length' = toInteger . length
 
@@ -295,7 +226,6 @@ euler_phi_medium n
 factorize :: Integer -> [Integer]
 factorize = Memo.integral factorize'
     where
-        factorize' 0 = []
         factorize' 1 = []
         factorize' n = p : factorize (n `div` p)
             where p = find_guaranteed (\p -> (n `mod` p) == 0) primes

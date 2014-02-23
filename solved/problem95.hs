@@ -18,37 +18,23 @@ import qualified Data.Set as Set
 import qualified Data.Ord as Ord
 import qualified Data.MemoCombinators as Memo
 
-sentinel = -1
-repeaters = [1, 6]
-
-get_divisors :: Integer -> [Integer]
-get_divisors = Memo.integral get_divisors'
-	where get_divisors' = init . uniqueify . map product . powerset . factorize
-
-{-cut_at_cycle_rec :: (Ord a) => Set.Set a -> [a] -> [a]
-cut_at_cycle_rec s l = 
-	case e `Set.member` s of
-		True -> []
-		False -> e : cut_at_cycle_rec (Set.insert e s) (tail l)
-		where e = head l
-
-cut_at_cycle :: (Ord a) => [a] -> [a]
-cut_at_cycle l = cut_at_cycle_rec Set.empty l-}
-
-calc_chain_rec :: Integer -> [Integer]
-calc_chain_rec n
-	| n > 1000000 = [sentinel]
-	| n `elem` repeaters = [n, sentinel]
-	| otherwise = n : (calc_chain . sum . get_divisors $ n)
-
---calc_chain_rec' = cut_at_cycle calc_chain_rec''
+sum_divisors :: Integer -> Integer
+sum_divisors = Memo.integral sum_divisors'
+	where sum_divisors' = sum . init . uniqueify . map product . powerset . factorize
 
 calc_chain :: Integer -> [Integer]
 calc_chain = Memo.integral calc_chain'
-	where calc_chain' n = n : (takeWhile ((/=) n) $ tail (calc_chain_rec n))
+	where calc_chain' n =
+		if n > 10000000 then
+			[]
+		else
+			n : (calc_chain . sum_divisors $ n)
 
-chains :: [[Integer]]
-chains = map calc_chain [1..1000000] 
+amicable_chains :: [[Integer]]
+amicable_chains = filter is_amicable . map decyclify $ chains
+	where
+		chains = map calc_chain [1..1000000]
+		is_amicable l = (head l) == sum_divisors (last l)
 
 main = do
-	(putStrLn . show . minimum . List.maximumBy (Ord.comparing length)) chains
+	(putStrLn . show . minimum . List.maximumBy (Ord.comparing length)) amicable_chains
