@@ -14,10 +14,10 @@ sentinel_roll :: Roll
 sentinel_roll = (-1, -1)
 
 cc_cards_src :: [Card]
-cc_cards_src = cycle . shuffle . concat $ [["_"]]--[["GO", "JAIL"], replicate (16-2) "_"]
+cc_cards_src = cycle . shuffle . concat $ [["GO", "JAIL"], replicate (16-2) "_"]
 
 ch_cards_src :: [Card]
-ch_cards_src = cycle . shuffle . concat $ [["_"]]--[["GO", "JAIL", "C1", "E3", "H2", "R1", "NEXTR", "NEXTR", "NEXTU", "-3"], replicate (16-10) "_"]
+ch_cards_src = cycle . shuffle . concat $ [["GO", "JAIL", "C1", "E3", "H2", "R1", "NEXTR", "NEXTR", "NEXTU", "-3"], replicate (16-10) "_"]
 
 squares_finite_src :: [Square]
 squares_finite_src = ["GO", "A1", "CC1", "A2", "T1", "R1", "B1", "CH1", "B2", "B3", "JAIL", "C1", "U1", "C2", "C3", "R2", "D1", "CC2", "D2", "D3", "FP", "E1", "CH2", "E2", "E3", "R3", "F1", "F2", "U2", "F3", "G2J", "G1", "G2", "CC3", "G3", "R4", "CH3", "H1", "T2", "H2"]
@@ -26,7 +26,7 @@ squares_src :: [Square]
 squares_src = cycle squares_finite_src
 
 dice_rolls_src :: [Roll]
-dice_rolls_src = preprocess . pairify $ random_integers (1, 6) 319005965
+dice_rolls_src = preprocess . pairify $ random_integers (1, 4) 193105965
 	where
 		preprocess :: [(Integer, Integer)] -> [(Integer, Integer)]
 		preprocess = concat . map adjust_group . List.group
@@ -39,9 +39,11 @@ dice_rolls_src = preprocess . pairify $ random_integers (1, 6) 319005965
 calc_num_squares_to_advance :: [Square] -> Card -> Roll -> Integer
 calc_num_squares_to_advance squares card roll@(r1, r2)= case card of
 	"_" -> r1 + r2
-	"-3" -> -3 + r1 + r2 --won't be 100% accurate in the case where r1 == r2 == 1.
 	"NEXTR" -> minimum . map (n_until squares) $ ["R1", "R2", "R3", "R4"]
 	"NEXTU" -> minimum . map (n_until squares) $ ["U1", "U2"]
+	"-3" -> let x = -3 + r1 + r2 in
+		if x >= 0 then x else
+			(length' squares_finite_src) - 1
 	_ -> n_until squares card
 
 n_until :: [Square] -> Card -> Integer
@@ -83,7 +85,6 @@ get_squares_hit'
 		cc_cards' = if hit_square_pre_cards squares roll == "CC*" then t cc_cards else cc_cards
 		ch_cards' = if hit_square_pre_cards squares roll == "CH*" then t ch_cards else ch_cards
 
-		num_to_drop' :: Int
 		num_to_drop' = num_to_drop cc ch squares roll
 
 len = 1000000.0

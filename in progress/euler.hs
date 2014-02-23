@@ -127,7 +127,7 @@ shuffle' l indices =
 shuffle :: [a] -> [a]
 shuffle l = shuffle' l randomness
     where
-        randomness = prep (length l) $ random_integers (0, (length' l) - 1) 18726349
+        randomness = prep (length l) $ random_integers (0, (length' l) - 1) 280172349
 
         prep len l = reverse . take len $ prep' l []
 

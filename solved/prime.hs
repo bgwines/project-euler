@@ -1,7 +1,10 @@
-module Prime
+ module Prime
 ( primes
 , is_prime
+, coprime
 ) where
+
+import qualified Data.List
 
 merge :: (Ord a) => [a] -> [a] -> [a]
 merge xs@(x:xt) ys@(y:yt) = 
@@ -10,7 +13,8 @@ merge xs@(x:xt) ys@(y:yt) =
     EQ -> x : (merge xt yt)
     GT -> y : (merge xs yt)
 
-primes, nonprimes :: [Integer]
+primes :: [Integer]
+nonprimes :: [Integer]
 primes    = [2, 3, 5] ++ (diff [7, 9 ..] nonprimes) 
 nonprimes = foldr1 f $ map g $ tail primes
   where 
@@ -33,3 +37,7 @@ is_prime_rec n k
 
 is_prime :: Integer -> Bool
 is_prime n = is_prime_rec n 2
+
+coprime :: Integer -> Integer -> Bool
+coprime a b = Nothing == Data.List.find is_common_divisor [2..(min a b)]
+  where is_common_divisor n = (a `mod` n == 0) && (b `mod` n == 0)
