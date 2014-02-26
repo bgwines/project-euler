@@ -1,53 +1,52 @@
 module Euler
-( diff
-, gen_perms
-, gen_cycles
-, powerset
-, gen_subsets_of_size
-, merge
-, mergesort
-, factorize
-, euler_phi
-, is_power
-, is_int
-, to_int
+( continued_fraction_sqrt
+, continued_fraction_sqrt_infinite
+, decyclify
+, diff
 , divides
-, get_num_digits
-, map_keep
-, uniqueify
+, euler_phi
+, factorize
+, fill_set
 , find
 , find_guaranteed
-, maximum_with_index
-, substr
-, splice_out
-, get_splice_pair
-, is_palindrome
-, fill_set
-, fst3
-, snd3
-, trd3
-, fromRealFrac
 , from_just
+, fromRealFrac
+, gen_cycles
+, gen_perms
+, gen_subsets_of_size
+, get_divisors
+, get_num_digits
+, get_splice_pair
+, indexify
+, irr_squares
+, is_int
+, is_palindrome
+, is_power
+, map_keep
+, maximum_with_index
+, merge
+, mergesort
 , pair
+, pairify
+, powerpartition
+, powerset
+, random_integers
+, shuffle
+, splice_out
+, sqrt_convergents
+, substr
+, take_while_keep_last
+, to_int
+, tri_area
+, tri_area_double
 , triple
+, uniqueify
 , length'
 , drop'
 , take'
-, tri_area
-, tri_area_double
-, take_while_keep_last
-, continued_fraction_sqrt
-, continued_fraction_sqrt_infinite
-, irr_squares
-, sqrt_convergents
-, indexify
-, h
-, t
-, pairify
-, shuffle
-, random_integers
-, decyclify
-, get_divisors
+, fst3
+, snd3
+, trd3
 ) where
 
 import qualified Data.List as List
@@ -56,6 +55,29 @@ import qualified Data.Set as Set
 import qualified Data.MemoCombinators as Memo
 import System.Random
 import Prime
+
+get_next_partitions :: a -> [[a]] -> [[[a]]]
+get_next_partitions e l =
+	([e] : l) : (map f indices)
+	where
+		f i = (a i) ++ (b i) ++ (c i)
+		
+		a i = ((take' i) l)
+		b i = [e : (l !! (fromInteger i))]
+		c i = (drop' (i+1) l)
+
+		indices = [0..((length' l) - 1)]
+
+powerpartition :: [a] -> [[[a]]]
+powerpartition [] = []
+powerpartition l =
+	if length l == 1 then
+		[[[head l]]]
+	else
+		let
+			rec_partitions = powerpartition (tail l)
+		in
+			concat . map (get_next_partitions (head l)) $ rec_partitions
 
 get_divisors :: Integer -> [Integer]
 get_divisors = Memo.integral get_divisors'
