@@ -9,6 +9,12 @@ Find the sum of the digits in the number 100!
 
 import Data.Char
 
+fact :: Integer -> Integer
 fact n = product [1..n]
 
-m = sum $ map digitToInt $ show $ fact 100
+digit_sum :: Int
+digit_sum = sum . map digitToInt . show . fact $ 100
+
+main :: IO ()
+main = do
+	putStrLn . show $ digit_sum

@@ -1,11 +1,14 @@
 
-import List
+import qualified Zora.List as ZList
 
-as = [2..100]
-bs = [2..100]
+import Control.Applicative
 
-powers = [a^b | a<-as, b<-bs]
+nums :: [Integer]
+nums = [2..100]
 
-s = fill_set powers
+unique_powers :: [Integer]
+unique_powers = ZList.uniqueify $ (^) <$> nums <*> nums
 
-sought = Set.size s
+main :: IO ()
+main = do
+	putStrLn . show $ length unique_powers

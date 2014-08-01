@@ -21,5 +21,6 @@ sum_of_squares = sum $ map (^2) l
 square_of_sum :: Integer
 square_of_sum = (^2) $ sum l
 
+main :: IO ()
 main = do
 	(putStrLn . show) $ abs $ square_of_sum - sum_of_squares

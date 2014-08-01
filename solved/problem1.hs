@@ -4,11 +4,14 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 Find the sum of all the multiples of 3 or 5 below 1000.
 -}
 
-get_mults_of_3_and_3_under :: Integer -> [Integer]
-get_mults_of_3_and_3_under n = filter divides_3_and_5 [1..n-1]
-	where divides_3_and_5 m = 
-		(m `mod` 3 == 0) &&
-		(m `mod` 5 == 0)
+mults_of_3_and_5 :: [Integer]
+mults_of_3_and_5 = filter divides_3_and_5 [1..999]
+	where
+		divides_3_and_5 :: Integer -> Bool
+		divides_3_and_5 m = 
+			(m `mod` 3 == 0) ||
+			(m `mod` 5 == 0)
 
+main :: IO ()
 main = do
-	(putStrLn . show) $ sum $ get_mults_of_3_and_3_under 1000
+	putStrLn . show . sum $ mults_of_3_and_5

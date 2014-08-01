@@ -4,22 +4,19 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 Find the largest palindrome made from the product of two 3-digit numbers.
 -}
 
-import List
+import Zora.List
 
 forms_mult_palindrome_pair :: (Integer, Integer) -> Bool
-forms_mult_palindrome_pair (a,b) = is_palindrome $ show $ a * b
-
-nums :: [Integer]
-nums = [100..999]
-
-pairs :: [(Integer, Integer)]
-pairs = [(a,b) | a <- nums, b <- nums]
+forms_mult_palindrome_pair (a,b) = is_palindrome . show $ a * b
 
 mult_palindrome_pairs :: [(Integer, Integer)]
-mult_palindrome_pairs = filter forms_mult_palindrome_pair pairs
+mult_palindrome_pairs
+	= filter forms_mult_palindrome_pair
+	$ zip [100..999] [100..999]
 
 mults :: [Integer]
-mults = [a*b | (a,b) <- mult_palindrome_pairs]
+mults = map (\(a,b) -> a*b) mult_palindrome_pairs
 
+main :: IO ()
 main = do
-	(putStrLn . show) $ maximum mults
+	putStrLn . show $ maximum mults

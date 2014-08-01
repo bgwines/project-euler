@@ -7,11 +7,11 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 -}
 
 fibs :: [Integer]
-fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+fibs = 0 : 1 : (zipWith (+) fibs (tail fibs))
 
 even_smallfibs :: [Integer]
-even_smallfibs = filter even smallfibs
-	where smallfibs = takeWhile (\x -> x < 4000000) fibs
+even_smallfibs = filter even . takeWhile (< 4000000) $ fibs
 
+main :: IO ()
 main = do
-	(putStrLn . show) $ sum even_smallfibs
+	putStrLn . show $ sum even_smallfibs

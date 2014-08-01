@@ -16,29 +16,42 @@ e.g. |11| = 11 and |−4| = 4
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
 -}
 
-import Data.List
-import Data.Ord
+import qualified Data.List as List
+import qualified Data.Ord as Ord
 
-import Prime
+import qualified Zora.List as ZList
+import qualified Zora.Math as ZMath
 
-calc_num_primes_produced f =
-	length $ takeWhile (is_prime . f) [0..]
+import Control.Applicative
 
-maximum_with_index xs =
-	maximumBy (comparing fst) (zip xs [0..])
+num_primes_produced :: (Integer -> Integer) -> Int
+num_primes_produced f =
+	length . takeWhile (ZMath.prime . f) $ [0..]
 
+k :: Integer
 k = 999
+
+as :: [Integer]
 as = [-k..k]
---bs = [-k..k]
 
-positive_small_primes = takeWhile (<= k) primes
-bs = positive_small_primes
+positive_small_primes :: [Integer]
+positive_small_primes = takeWhile (<= k) ZMath.primes
 
-quadratics = [((\n -> n^2 + a*n + b),(a,b)) | a<-as, b<-bs]
+quadratics :: [(Integer -> Integer, (Integer, Integer))]
+quadratics = f <$> as <*> positive_small_primes
+	where
+		f :: Integer -> Integer -> (Integer -> Integer, (Integer, Integer))
+		f a b = ((\n -> n^2 + (a * n) + b), (a, b))
 
-fs_with_results = map (\(f,t) -> (calc_num_primes_produced f, t)) quadratics
+fs_with_results :: [(Int, (Integer, Integer))]
+fs_with_results = map (ZList.map_fst (($) num_primes_produced))quadratics
 
-max_with_index = maximum_with_index fs_with_results
+max_with_index :: ((Int, (Integer, Integer)), Integer)
+max_with_index = ZList.maximum_with_index fs_with_results
 
-ab = snd $ fst max_with_index
-sought = fst ab * snd ab
+ab :: (Integer, Integer)
+ab = snd . fst $ max_with_index
+
+main :: IO ()
+main = do
+	putStrLn . show $ fst ab * snd ab

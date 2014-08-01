@@ -1,6 +1,17 @@
 
 import Data.Char
 
-powers = [[a^b | b <- [1..99]] | a <- [1..99]]
+import Control.Applicative
 
-sought = maximum $ map sum $ map (map digitToInt) $ map show $ concat powers
+powers :: [Integer]
+powers = (^) <$> [1..99] <*> [1..99]
+
+sought :: Int
+sought
+	= maximum
+	. map (sum . map digitToInt . show)
+	$ powers
+
+main :: IO ()
+main = do
+	putStrLn . show $ sought

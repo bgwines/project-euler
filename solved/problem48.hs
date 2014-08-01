@@ -1,2 +1,4 @@
 
-sought = sum $ map (\n -> n^n) [1..1000]
+main :: IO ()
+main = do
+	putStrLn . show $ sum . map (\n -> n^n) $ [1..1000]

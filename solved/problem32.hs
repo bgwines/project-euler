@@ -1,32 +1,35 @@
 
-import Data.List
-import Data.Char
+import qualified Data.List as List
+import qualified Data.Char as Char
 
-is_pandigital :: String -> Bool
-is_pandigital n = "123456789" == sort n
+import qualified Zora.List as ZList
 
---get_two_factor_lists :: (Num a) => Integer -> [(Integer, a)]
-get_two_factor_lists n = 
-    map 
-        (\m -> (m, div n m)) 
-        $ filter 
-            (\m -> n `mod` m == 0) 
-            [2..(div n 2)]
+import Data.Maybe
 
-get_two_factors_fast n = 
-    case first_factor of Nothing -> (1, n)
-                         Just factor -> (factor, div n factor)
-    where first_factor = find (\m -> n `mod` m == 0) [2..(div n 2)]
+pandigital :: String -> Bool
+pandigital n = "123456789" == (List.sort n)
 
-is_pandigital_trio mult_pair = 
-    is_pandigital $ 
-        (show $ fst mult_pair) ++
-        (show $ snd mult_pair) ++
-        (show (fst mult_pair * snd mult_pair))
+divisor_pairs :: Integer -> [(Integer, Integer)]
+divisor_pairs n
+	= map (ZList.map_snd (div n))
+	. (\x -> zip x x)
+	. filter (\m -> (n `mod` m) == 0) 
+	$ [2..(div n 2)]
 
-has_pandigital_trio l = Nothing /= find is_pandigital_trio l
+pandigital_trio :: (Integer, Integer) -> Bool
+pandigital_trio mult_pair
+	= pandigital $ 
+		(show . fst $ mult_pair) ++
+		(show . snd $ mult_pair) ++
+		(show . ZList.pair_op (*) $ mult_pair)
 
-sought = map (\(a,b) -> a*b) 
-   $ map (\l -> head l) 
-      $ filter has_pandigital_trio 
-         $ map get_two_factor_lists [1..1000000]
+sought :: [Integer]
+sought
+	= map (ZList.pair_op (*) . head)
+	. filter (any pandigital_trio)
+	. map divisor_pairs
+	$ [1..1000000]
+
+main :: IO ()
+main = do
+	putStrLn . show $ sought

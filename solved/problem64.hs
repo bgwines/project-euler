@@ -17,16 +17,21 @@ Exactly four continued fractions, for N ≤ 13, have an odd period.
 How many continued fractions for N ≤ 10000 have an odd period?
 -}
 
-import Euler
-import qualified Data.List as List
 import qualified Data.Ord as Ord
-import qualified Data.MemoCombinators as Memo
+import qualified Data.List as List
+import qualified Zora.Math as ZMath
 
 odd_period_continued_fraction_sqrts :: [Integer]
-odd_period_continued_fraction_sqrts = 
-	filter (is_odd_period . continued_fraction_sqrt) irr_squares
+odd_period_continued_fraction_sqrts = filter (is_odd_period . ZMath.continued_fraction_sqrt) irr_squares
 		where
+			is_odd_period :: [Integer] -> Bool
 			is_odd_period = odd . length . tail
 
+			irr_squares :: [Integer]
+			irr_squares
+				= map round
+				. filter (not . ZMath.is_int . sqrt)
+				$ [1..1000000] 
+main :: IO ()
 main = do
-	(putStrLn . show) $ length odd_period_continued_fraction_sqrts
+	putStrLn . show $ length odd_period_continued_fraction_sqrts

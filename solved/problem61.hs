@@ -8,7 +8,8 @@ Octagonal	 	P8,n=n(3n−2)	 	1, 8, 21, 40, 65, ...
 -}
 
 import qualified Data.Set as Set
-import List
+import qualified Data.List as List
+import qualified Zora.List as ZList
 
 triangle :: Integer -> Integer
 triangle n = (n * (1*n + 1)) `div` 2
@@ -35,38 +36,39 @@ four_digit_heptagonals = get_only_4_digits_elems heptagonals
 four_digit_octagonals  = get_only_4_digits_elems octagonals
 
 four_digit_triangulars_with_sourceNs :: [(Integer, Integer)]
-four_digit_triangulars_with_sourceNs = zipWith tupleify [1..] four_digit_triangulars
-four_digit_squares_with_sourceNs     = zipWith tupleify [1..] four_digit_squares
-four_digit_pentagonals_with_sourceNs = zipWith tupleify [1..] four_digit_pentagonals
-four_digit_hexagonals_with_sourceNs  = zipWith tupleify [1..] four_digit_hexagonals
-four_digit_heptagonals_with_sourceNs = zipWith tupleify [1..] four_digit_heptagonals
-four_digit_octagonals_with_sourceNs  = zipWith tupleify [1..] four_digit_octagonals
+four_digit_triangulars_with_sourceNs = zipWith pair [1..] four_digit_triangulars
+four_digit_squares_with_sourceNs     = zipWith pair [1..] four_digit_squares
+four_digit_pentagonals_with_sourceNs = zipWith pair [1..] four_digit_pentagonals
+four_digit_hexagonals_with_sourceNs  = zipWith pair [1..] four_digit_hexagonals
+four_digit_heptagonals_with_sourceNs = zipWith pair [1..] four_digit_heptagonals
+four_digit_octagonals_with_sourceNs  = zipWith pair [1..] four_digit_octagonals
 
-tupleify :: a -> b -> (a, b)
-tupleify a b = (a, b)
+pair :: a -> b -> (a, b)
+pair a b = (a, b)
 
 get_only_4_digits_elems :: [Integer] -> [Integer]
-get_only_4_digits_elems l = filter (f (==)) $ takeWhile (f (<=)) l
+get_only_4_digits_elems = filter (f (==)) . takeWhile (f (<=))
 	where f op n = op (ceiling $ logBase 10 (fromInteger n)) 4
 
 is_cycle_pair :: Integer -> Integer -> Bool
-is_cycle_pair a b = (drop 2 $ show a) == (take 2 $ show b)
+is_cycle_pair a b = (drop 2 . show $ a) == (take 2 . show $ b)
 
 is_cycle_this_permutation :: [Integer] -> Bool
-is_cycle_this_permutation l = 
-	(and $ zipWith is_cycle_pair (l) (tail l))
-	&&
-	(is_cycle_pair (last l) (head l))
+is_cycle_this_permutation l = and
+	[ and $ zipWith is_cycle_pair l (tail l)
+	, is_cycle_pair (last l) (head l) ]
 
 is_cycle :: [Integer] -> Bool
-is_cycle l = or $ map is_cycle_this_permutation unique_mod_cycling_perms
-	where unique_mod_cycling_perms = map (head l :) (gen_perms $ tail l)
+is_cycle l = any is_cycle_this_permutation unique_mod_cycling_perms
+	where
+		unique_mod_cycling_perms :: [[Integer]]
+		unique_mod_cycling_perms = map ((:) $ head l) (ZList.permutations $ tail l)
 
 all_different :: (Ord a) => [a] -> Bool
-all_different l = (length l) == (Set.size $ Set.fromList l)
+all_different l = ((List.sort l) == (List.sort . ZList.uniqueify $ l))
 
-find_only_valid_cycle_of_length_6 :: [Integer]
-find_only_valid_cycle_of_length_6 = ((map snd) . head)
+only_valid_cycle_of_length_6 :: [Integer]
+only_valid_cycle_of_length_6 = ((map snd) . head)
 	[[e3, e4, e5, e6, e7, e8] |
 		e3 <- four_digit_triangulars_with_sourceNs,
 		e4 <- four_digit_squares_with_sourceNs,
@@ -77,5 +79,6 @@ find_only_valid_cycle_of_length_6 = ((map snd) . head)
 		is_cycle      $ map snd [e3, e4, e5, e6, e7, e8],
 		all_different $ map fst [e3, e4, e5, e6, e7, e8]]
 
+main :: IO ()
 main = do
-	(putStrLn . show) $ sum find_only_valid_cycle_of_length_6
+	putStrLn . show $ sum only_valid_cycle_of_length_6

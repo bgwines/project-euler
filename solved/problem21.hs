@@ -1,20 +1,16 @@
 
-import Euler
+import qualified Zora.Math as ZMath
+import qualified Data.MemoCombinators as Memo
 
-safeindex :: [Integer] -> Integer -> Integer
-safeindex arr i
-	| (fromIntegral i > (length arr) - 1) = -1
-	| otherwise = arr !! (fromIntegral i)
+f :: Integer -> Integer
+f = Memo.integral (sum . ZMath.divisors)
 
-amicable :: [Integer] -> Integer -> Bool
-amicable arr i =
-	((arr `safeindex` (arr !! (fromIntegral i))) == i)
-	&&
-	(arr `safeindex` i) /= i
+amicable :: Integer -> Bool
+amicable n = ((f . f $ n) == n) && ((f n) /= n)
 
-factor_sums = [0] ++ map (sum . factorize) [1..10000]
+amicables :: [Integer]
+amicables = filter amicable [1..10000]
 
-amicables = filter (amicable factor_sums) [1..10000]
-
+main :: IO ()
 main = do
 	putStrLn . show $ sum amicables

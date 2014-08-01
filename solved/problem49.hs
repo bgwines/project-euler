@@ -4,22 +4,30 @@ There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes, ex
 
 What 12-digit number do you form by concatenating the three terms in this sequence?-}
 
-import Prime
-import Perms
+import qualified Zora.Math as ZMath
+import qualified Zora.List as ZList
 
-l = [1..9]
-
-smallprimes = filter (\n -> (length $ show n) == 4) $ takeWhile (\n -> (length $ show n) <= 4) primes
-
+seqprimes :: [Integer]
 seqprimes = filter 
-	(\n -> ((n + 3330)		  `elem` smallprimes) && 
-		   ((n + 3330 + 3330) `elem` smallprimes)) 
+	(\p -> ((p + 3330)		  `elem` smallprimes) && 
+		   ((p + 3330 + 3330) `elem` smallprimes)) 
 	smallprimes
+	where
+		smallprimes :: [Integer]
+		smallprimes
+			= filter    (\n -> (length $ show n) == 4)
+			. takeWhile (\n -> (length $ show n) <= 4)
+			$ ZMath.primes
 
-is_perm_triple (a,b,c) =
-	(show b) `elem` gen_perms (show a) &&
-	(show b) `elem` gen_perms (show a)
+is_permutation_triple :: (Integer, Integer, Integer) -> Bool
+is_permutation_triple (a, b, _) = (show b) `elem` (ZList.permutations $ show a)
 
-seqs = map (\n -> (n, n+3330, n+3330+3330)) seqprimes
+seqprime_triples :: [(Integer, Integer, Integer)]
+seqprime_triples = map (\n -> (n, n+3330, n+3330+3330)) seqprimes
 
-perms = filter is_perm_triple seqs
+perms :: [(Integer, Integer, Integer)]
+perms = filter is_permutation_triple seqprime_triples
+
+main :: IO ()
+main = do
+	putStrLn . show $ perms

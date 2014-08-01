@@ -1,12 +1,18 @@
 
-import Data.Char
+import qualified Data.Char as Char
 
 fact :: Integer -> Integer
-fact 0 = 1
 fact n = product [1..n]
 
 f :: Integer -> Bool
-f n = n == (sum $ map fact $ map (toInteger . digitToInt) $ show n)
+f n
+	= (==) n
+	. sum
+	. map fact
+	. map (toInteger . Char.digitToInt)
+	. show
+	$ n
 
-l = filter f [1..]
-sought = sum l
+main :: IO ()
+main = do
+	putStrLn . show $ sum . filter f $ [1..]

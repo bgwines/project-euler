@@ -1,4 +1,4 @@
-module Euler
+module EEuler
 ( continued_fraction_sqrt
 , continued_fraction_sqrt_infinite
 , decyclify

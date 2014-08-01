@@ -1,8 +1,13 @@
 
-import Data.Char
+import qualified Zora.List as ZList
+import qualified Data.Char as Char
 
-f = sum . (map (^5)) . (map digitToInt) . show
+valid_ns :: [Integer]
+valid_ns = filter (\n -> (n == (f n))) $ [1..]
+	where
+		f :: Integer -> Integer
+		f = sum . map ((^) 5 . Char.digitToInt) . show
 
-ns_and_fns = map (\n -> (n, f n)) [1..]
-
-valid_ns = map (\(n, fn) -> n) $ filter (\(n, fn) -> n == fn) ns_and_fns
+main :: IO ()
+main = do
+	putStrLn . show $ take 3 valid_ns

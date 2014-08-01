@@ -3,19 +3,23 @@ If p is the perimeter of a right angle triangle with integral length sides, {a,b
 
 {20,48,52}, {24,45,51}, {30,40,50}
 
-For which value of p ≤ 1000, is the number of solutions maximised?
+For which value of p ≤ 1000 is the number of solutions maximised?
 -}
 
-all_combos ub =
-	[(a,b,ub-a-b) |
-		a <- [0..(ub-1)], b <- [a..ub-a], b <= ub-a-b,
-		a*a + b*b == (ub-a-b)^2]
+import qualified Data.Ord as Ord
+import qualified Data.List as List
 
-alls1 = [all_combos ub | ub <- [0..1000]]
-alls = filter (\x -> length x /= 0) alls1
+solutions :: Integer -> [(Integer, Integer, Integer)]
+solutions p =
+	[ (a, b, c)
+		| a <- [0..(p - 1)]
+		, b <- [a..(div (p - a) 2)]
+		, c <- [p - a - b]
+		, (a^2) + (b^2) == (c^2) ]
 
-better a b
-	| length a < length b = b
-	| otherwise = a
+p_with_most_solutions :: Integer
+p_with_most_solutions = List.maximumBy (Ord.comparing (length . solutions)) [0..1000]
 
-m = foldl1 better alls
+main :: IO ()
+main = do
+	putStrLn . show $ p_with_most_solutions

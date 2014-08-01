@@ -5,7 +5,7 @@ import pdb
 
 def zip_with(xs, ys, f):
     l = []
-    for i in xrange(len(xs)):
+    for i in xrange(min(len(xs), len(ys))):
         l.append(f(xs[i], ys[i]))
     return l
 
@@ -35,10 +35,10 @@ def fast_euler_phi(n, totients):
 def get_elem_counts(s):
     d = {}
     for ch in str(s):
-            if ch in d:
-                    d[ch] += 1
-            else:
-                    d[ch] = 1
+        if ch in d:
+            d[ch] += 1
+        else:
+            d[ch] = 1
     return (tuple(d.keys()), tuple(d.values()))
 
 def slice_out(l, i):
@@ -119,7 +119,6 @@ def product(l):
     for e in l:
         prod *= e
     return prod
-
 
 def flatten_1(l):
     ll = []

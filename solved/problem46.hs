@@ -1,29 +1,36 @@
 
-import Prime
-import Data.List
+import qualified Data.List as List
+import qualified Zora.Math as ZMath
+
+import Data.Maybe
 
 is_int :: (Show a) => a -> Bool
-is_int n = ('0' == (last $ show n)) && ('.' == (last $ init $ show n))
-
-is_square :: Integer -> Bool
-is_square n = is_int $ sqrt (fromIntegral n)
+is_int n = and 
+	[ '0' == (last . show $ n)
+	, '.' == (last . init . show $ n) ]
 
 is_sum_of_p_and_twice_a_square :: Integer -> Integer -> Bool
-is_sum_of_p_and_twice_a_square n p = is_square $ div (n-p) 2
+is_sum_of_p_and_twice_a_square n p = ZMath.square $ div (n - p) 2
 
-is_sum_of_prime_and_twice_a_square_wrapped :: Integer -> Maybe Integer
-is_sum_of_prime_and_twice_a_square_wrapped n = 
-	find (is_sum_of_p_and_twice_a_square n) smallprimes
-	where smallprimes = filter (\p -> even (n-p)) $ takeWhile (<n) primes
-
-is_sum_of_prime_and_twice_a_square :: Integer -> Bool
-is_sum_of_prime_and_twice_a_square n =
-	Nothing /= (is_sum_of_prime_and_twice_a_square_wrapped n)
+is_sum_of_a_prime_and_twice_a_square :: Integer -> Bool
+is_sum_of_a_prime_and_twice_a_square n = 
+	isJust . List.find (is_sum_of_p_and_twice_a_square n) $smallprimes
+	where
+		smallprimes :: [Integer]
+		smallprimes
+			= filter (\p -> even (n - p))
+			. takeWhile (< n)
+			$ ZMath.primes
 
 odds_composites :: [Integer]
-odds_composites = filter (not . is_prime) $ filter (< 5779) [5,7..]
+odds_composites
+	= filter (not . ZMath.prime)
+	. filter (< 5779)
+	$ [5,7..]
 
 sought :: Maybe Integer
-sought = find 
-	(not . is_sum_of_prime_and_twice_a_square)
-	odds_composites 
+sought = List.find (not . is_sum_of_a_prime_and_twice_a_square) odds_composites 
+
+main :: IO ()
+main = do
+	putStrLn . show $ fromJust sought

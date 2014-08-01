@@ -1,11 +1,18 @@
 
-import Data.List
+import qualified Zora.Math as ZMath
 
-fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
+find_index :: [a] -> (a -> Bool) -> Int -> Int
+find_index (x:xs) f i =
+	if f x
+		then i
+		else find_index xs f (succ i)
 
-find_index l condition index =
-	case condition $ head l of
-		True  -> index
-		False -> find_index (tail l) condition index+1
+satisfying_index :: Int
+satisfying_index = find_index ZMath.fibs right_length 1
+	where
+		right_length :: (Show a) => a -> Bool
+		right_length x = (length . show $ x) == 1000
 
-sought = find_index fibs (\x -> (length $ show x) == 1000) 1
+main :: IO ()
+main = do
+	putStrLn . show $ satisfying_index

@@ -4,7 +4,9 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 What is the 10 001st prime number?
 -}
 
-import Prime
+import qualified Zora.Math as Math
 
+main :: IO ()
 main = do
-  (putStrLn . show) $ primes !! (10001 - 1) -- -1 for off-by-one
+	-- -1 for off-by-one
+	putStrLn . show $ Math.primes !! (10001 - 1)
