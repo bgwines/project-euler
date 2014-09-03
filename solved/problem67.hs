@@ -10,10 +10,12 @@ calc_max_path_totals_for_row row prev_row =
 
 -- parallel to graph
 max_path_totals :: [[Integer]]
-max_path_totals = [head graph] ++ 
+max_path_totals = (++) [head graph]
     zipWith
         calc_max_path_totals_for_row
         (tail graph)
         max_path_totals
 
-sought = maximum $ last max_path_totals
+main :: IO ()
+main = do
+	putStrLn . show $ maximum . last $ max_path_totals

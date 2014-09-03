@@ -14,7 +14,7 @@ generalized_pents = map pent alternatings
 
 -- [0, 1, -1, 2, -2, 3, -3, ...]
 alternatings :: [Integer]
-alternatings = (concat $ map (\i -> [i, -i]) $ [1..])
+alternatings = concatMap (\i -> [i, -i]) [1..]
 
 signs :: [Integer]
 signs = map f alternatings
@@ -36,6 +36,7 @@ p' n
 p :: Integer -> Integer
 p = Memo.integral p'
 
+main :: IO ()
 main = do
 	(putStrLn . show) $ find_guaranteed sought [1..]
 		where

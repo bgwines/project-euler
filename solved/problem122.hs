@@ -63,7 +63,7 @@ optimal_compositions' n
 
 		combine :: ([MultComposition], [MultComposition]) -> [MultComposition]
 		combine (mcs, mcs')
-			= map (List.nub . (:) n)
+			= map (ZList.uniqueify . (:) n)
 			$ (++) <$> mcs <*> mcs'
 
 		pair_map :: (a -> b) -> (a, a) -> (b, b)
