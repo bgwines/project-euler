@@ -11,11 +11,7 @@ import Data.Maybe
 import Control.Applicative
 
 num_solutions :: Integer -> Integer
-num_solutions n
-	= ZList.length'
-	. takeWhile (<= n)
-	. ZMath.divisors
-	$ n^2
+num_solutions = ZMath.num_divisors_of_n_squared_leq_n
 
 sought :: Integer
 sought
