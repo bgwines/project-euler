@@ -48,20 +48,10 @@ adjacency_matrix = [
 	[774,289,833,257,0,381,239,722,711,468,933,0,0,17,0,0,148,0,0,853,0,0,0,0,264,194,260,947,0,752,147,0,0,343,112,273,344,680,540,0]
 ]
 
-aadjacency_matrix = [
-[0, 16, 12, 21, 0, 0, 0],
-[16, 0, 0, 17, 20, 0, 0],
-[12, 0, 0, 28, 0, 31, 0],
-[21, 17, 28, 0, 18, 19, 23],
-[0, 20, 0, 18, 0, 0, 11],
-[0, 0, 31, 19, 0, 0, 27],
-[0, 0, 0, 23, 11, 27, 0]
-]
-
 def sort_edges(adj_matrix):
 	edges = []
 	for i, _ in enumerate(adj_matrix):
-		for j, uv_weight in enumerate(adjacency_matrix[i]):
+		for j, uv_weight in enumerate(adj_matrix[i]):
 			edges.append(((i, j), uv_weight))
 
 	edges.sort(key=lambda (ij, w): -1 * w)
@@ -99,19 +89,15 @@ def still_connected(s, t, adj_matrix, seen, cantreach):
 	return False
 
 def kruskal(adj_matrix, sorted_edges):
-	bidirectional = False
 	for ((i, j), w) in sorted_edges:
+		if (w == 0):
+			continue
+
 		e_fwd = ((i, j), w)
 		e_rev = ((j, i), w)
 
-		bidirectional = not bidirectional
-		if bidirectional:
-			continue
-		if w == 0:
-			continue
-
 		remove_edge(e_fwd, adj_matrix)
-		remove_edge(e_rev, adjacency_matrix)
+		remove_edge(e_rev, adj_matrix)
 		if not still_connected(i, j, adj_matrix, set(), {}):
 			add_edge(e_fwd, adj_matrix)
 			add_edge(e_rev, adj_matrix)
