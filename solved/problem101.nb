@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[      9754,        297]
-NotebookOptionsPosition[      9022,        269]
-NotebookOutlinePosition[      9360,        284]
-CellTagsIndexPosition[      9317,        281]
+NotebookDataLength[      9291,        284]
+NotebookOptionsPosition[      8709,        259]
+NotebookOutlinePosition[      9047,        274]
+CellTagsIndexPosition[      9004,        271]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -38,13 +38,6 @@ Cell[BoxData[
    SuperscriptBox["x", "2"]}]}]], "Output",
  CellChangeTimes->{3.61937481836901*^9, 3.619374887117041*^9}]
 }, Open  ]],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.619374807394397*^9, 3.619374828280409*^9}, 
-   3.619374893836452*^9}],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.619374891468157*^9, 3.619374891546227*^9}}],
 
 Cell[BoxData[
  RowBox[{"seqs", " ", "=", " ", 
@@ -84,9 +77,6 @@ Cell[BoxData[
       "9090909091"}], "}"}]}], "}"}]}]], "Input",
  CellChangeTimes->{{3.619374812418133*^9, 3.619374817049864*^9}, {
   3.6193750607296877`*^9, 3.6193750934540443`*^9}}],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.6193752560444517`*^9, 3.619375256065928*^9}}],
 
 Cell[CellGroupData[{
 
@@ -287,21 +277,17 @@ Cell[CellGroupData[{
 Cell[567, 22, 419, 9, 27, "Input"],
 Cell[989, 33, 195, 5, 30, "Output"]
 }, Open  ]],
-Cell[1199, 41, 118, 2, 27, InheritFromParent],
-Cell[1320, 45, 92, 1, 27, InheritFromParent],
-Cell[1415, 48, 1475, 37, 133, InheritFromParent],
-Cell[2893, 87, 94, 1, 27, InheritFromParent],
+Cell[1199, 41, 1475, 37, 133, "Input"],
 Cell[CellGroupData[{
-Cell[3012, 92, 408, 10, 27, "Input"],
-Cell[3423, 104, 3294, 98, 215, "Output"]
+Cell[2699, 82, 408, 10, 27, "Input"],
+Cell[3110, 94, 3294, 98, 215, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6754, 207, 380, 10, 43, "Input"],
-Cell[7137, 219, 1869, 47, 148, "Output"]
+Cell[6441, 197, 380, 10, 43, "Input"],
+Cell[6824, 209, 1869, 47, 148, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-
