@@ -84,8 +84,7 @@ turn_into_number
 sought :: Integer
 sought
 	= minimum
-	. map turn_into_number
-	. map best_exponent_list_of_length
+	. map (turn_into_number . best_exponent_list_of_length)
 	$ [15,14..8]
 
 main :: IO ()
