@@ -1,11 +1,14 @@
-/* Let's call a lattice point (x, y) inadmissible if x, y and x + y are all positive perfect squares.
-For example, (9, 16) is inadmissible, while (0, 4), (3, 1) and (9, 4) are not.
+/* Let's call a lattice point (x, y) inadmissible if x, y and x + y are all
+positive perfect squares. For example, (9, 16) is inadmissible, while (0, 4),
+(3, 1) and (9, 4) are not.
 
-Consider a path from point (x1, y1) to point (x2, y2) using only unit steps north or east.
-Let's call such a path admissible if none of its intermediate points are inadmissible.
+Consider a path from point (x1, y1) to point (x2, y2) using only unit steps
+north or east. Let's call such a path admissible if none of its intermediate
+points are inadmissible.
 
 P(n) be the number of admissible paths from (0, 0) to (n, n).
-It can be verified that P(5) = 252, P(16) = 596994440 and P(1000) mod 1 000 000 007 = 341920854.
+It can be verified that P(5) = 252, P(16) = 596994440 and
+P(1000) mod 1 000 000 007 = 341920854.
 
 Find P(10 000 000) mod 1 000 000 007.
 
@@ -184,57 +187,44 @@ point swap(point& p) {
 }
 
 map<point, long> dp_cache;
-long count_num_admissible_paths_to_pt(point& inad_pt, vector<point>& inadmissable_points) {
-	if (dp_cache.find(inad_pt) != dp_cache.end()) {
-		return dp_cache[inad_pt];
+long count_num_admissible_paths_to(
+	point& pt,
+	vector<point>& inadmissable_points)
+{
+	if (dp_cache.find(pt) != dp_cache.end()) {
+		return dp_cache[pt];
 	}
 
-	long npaths = count_num_paths_from_pt_to_pt(LIMIT_PT, inad_pt);
+	long npaths = count_num_paths_from_pt_to_pt(LIMIT_PT, pt);
 	for (size_t j=0; j<inadmissable_points.size(); j++) {
-		point inad_pt2 = inadmissable_points[j];
-		if (!pt_less(inad_pt, inad_pt2)) {
+		point inad_pt = inadmissable_points[j];
+		if (!pt_less(pt, inad_pt)) {
 			continue;
 		}
 
 		npaths = sub(
 			npaths,
 			mul(
-				count_num_paths_from_pt_to_pt(inad_pt2, inad_pt),
-				count_num_admissible_paths_to_pt(inad_pt2, inadmissable_points)
-				)
-		);
-	}
-
-	dp_cache[inad_pt] = npaths;
-	dp_cache[swap(inad_pt)] = npaths;
-	return npaths;
-}
-
-long count_num_admissable_paths() {
-	fact_init();
-
-	vector<point> inadmissable_points = gen_inadmissable_points();
-
-	long npaths = count_num_paths_from_pt_to_pt(LIMIT_PT, ORIGIN);
-	for (size_t i=0; i<inadmissable_points.size(); i++) {
-		point inad_pt = inadmissable_points[i];
-		// subtract the number of paths from LIMIT_PT to ORIGIN for which this is the first inadmissible point
-		npaths = sub(
-			npaths,
-			mul(
-				count_num_admissible_paths_to_pt(
-					inad_pt,
-					inadmissable_points),
-				count_num_paths_from_pt_to_pt(inad_pt, ORIGIN)
+				count_num_admissible_paths_to(inad_pt, inadmissable_points),
+				count_num_paths_from_pt_to_pt(inad_pt, pt)
 			)
 		);
 	}
 
+	dp_cache[pt] = npaths;
+	dp_cache[swap(pt)] = npaths;
 	return npaths;
 }
 
 int main(int argc, char const *argv[]) {
-	printf("Number of admissable paths from (%lu, %lu) to origin: %lu\n", N, N, count_num_admissable_paths());
+	fact_init();
+
+	vector<point> inadmissable_points = gen_inadmissable_points();
+
+	long npaths = count_num_admissible_paths_to(ORIGIN, inadmissable_points);
+
+	printf("Number of admissable paths from (%lu, %lu) to origin: %lu\n",
+		N, N, npaths);
 
 	return 0;
 }
