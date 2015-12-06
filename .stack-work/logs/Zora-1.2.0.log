@@ -1,0 +1,632 @@
+Configuring Zora-1.2.0...
+Building Zora-1.2.0...
+Preprocessing library Zora-1.2.0...
+[1 of 3] Compiling Zora.Graphing.DAGGraphing ( Zora/Graphing/DAGGraphing.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Zora/Graphing/DAGGraphing.o )
+
+Zora/Graphing/DAGGraphing.hs:54:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:55:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:56:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:57:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:58:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:59:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:60:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:61:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:62:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:63:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:82:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:83:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:92:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:93:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:94:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:99:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:100:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:101:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:103:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:104:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:105:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:106:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:107:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:109:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:110:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:111:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:112:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:113:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:114:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:115:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:116:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:117:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:118:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:119:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:120:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:122:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:123:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:125:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:126:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:127:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:128:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:129:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:130:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:131:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:132:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:133:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:134:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:135:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:136:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:138:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:139:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:140:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:141:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:142:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:143:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:149:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:150:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:151:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:152:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:153:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:154:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:155:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:156:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:158:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:159:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:160:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:161:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:162:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:163:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:164:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:166:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:166:60: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:167:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:167:76: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:168:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:168:53: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:168:64: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:169:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:170:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:171:1: Warning: Tab character
+
+Zora/Graphing/DAGGraphing.hs:172:1: Warning: Tab character
+[2 of 3] Compiling Zora.List        ( Zora/List.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Zora/List.o )
+[3 of 3] Compiling Zora.Math        ( Zora/Math.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Zora/Math.o )
+
+Zora/Math.hs:79:1: Warning: Tab character
+
+Zora/Math.hs:80:1: Warning: Tab character
+
+Zora/Math.hs:81:1: Warning: Tab character
+
+Zora/Math.hs:83:1: Warning: Tab character
+
+Zora/Math.hs:84:1: Warning: Tab character
+
+Zora/Math.hs:85:1: Warning: Tab character
+
+Zora/Math.hs:86:1: Warning: Tab character
+
+Zora/Math.hs:87:1: Warning: Tab character
+
+Zora/Math.hs:88:1: Warning: Tab character
+
+Zora/Math.hs:96:1: Warning: Tab character
+
+Zora/Math.hs:97:1: Warning: Tab character
+
+Zora/Math.hs:98:1: Warning: Tab character
+
+Zora/Math.hs:99:1: Warning: Tab character
+
+Zora/Math.hs:100:1: Warning: Tab character
+
+Zora/Math.hs:101:1: Warning: Tab character
+
+Zora/Math.hs:103:1: Warning: Tab character
+
+Zora/Math.hs:104:1: Warning: Tab character
+
+Zora/Math.hs:105:1: Warning: Tab character
+
+Zora/Math.hs:106:1: Warning: Tab character
+
+Zora/Math.hs:107:1: Warning: Tab character
+
+Zora/Math.hs:111:1: Warning: Tab character
+
+Zora/Math.hs:112:1: Warning: Tab character
+
+Zora/Math.hs:113:1: Warning: Tab character
+
+Zora/Math.hs:114:1: Warning: Tab character
+
+Zora/Math.hs:115:1: Warning: Tab character
+
+Zora/Math.hs:116:1: Warning: Tab character
+
+Zora/Math.hs:117:1: Warning: Tab character
+
+Zora/Math.hs:119:1: Warning: Tab character
+
+Zora/Math.hs:120:1: Warning: Tab character
+
+Zora/Math.hs:121:1: Warning: Tab character
+
+Zora/Math.hs:122:1: Warning: Tab character
+
+Zora/Math.hs:123:1: Warning: Tab character
+
+Zora/Math.hs:125:1: Warning: Tab character
+
+Zora/Math.hs:126:1: Warning: Tab character
+
+Zora/Math.hs:128:1: Warning: Tab character
+
+Zora/Math.hs:129:1: Warning: Tab character
+
+Zora/Math.hs:131:1: Warning: Tab character
+
+Zora/Math.hs:132:1: Warning: Tab character
+
+Zora/Math.hs:150:1: Warning: Tab character
+
+Zora/Math.hs:151:1: Warning: Tab character
+
+Zora/Math.hs:152:1: Warning: Tab character
+
+Zora/Math.hs:153:1: Warning: Tab character
+
+Zora/Math.hs:154:1: Warning: Tab character
+
+Zora/Math.hs:159:1: Warning: Tab character
+
+Zora/Math.hs:160:1: Warning: Tab character
+
+Zora/Math.hs:161:1: Warning: Tab character
+
+Zora/Math.hs:171:1: Warning: Tab character
+
+Zora/Math.hs:172:1: Warning: Tab character
+
+Zora/Math.hs:173:1: Warning: Tab character
+
+Zora/Math.hs:174:1: Warning: Tab character
+
+Zora/Math.hs:175:1: Warning: Tab character
+
+Zora/Math.hs:176:1: Warning: Tab character
+
+Zora/Math.hs:177:1: Warning: Tab character
+
+Zora/Math.hs:182:1: Warning: Tab character
+
+Zora/Math.hs:183:1: Warning: Tab character
+
+Zora/Math.hs:184:1: Warning: Tab character
+
+Zora/Math.hs:185:1: Warning: Tab character
+
+Zora/Math.hs:186:1: Warning: Tab character
+
+Zora/Math.hs:191:1: Warning: Tab character
+
+Zora/Math.hs:192:1: Warning: Tab character
+
+Zora/Math.hs:193:1: Warning: Tab character
+
+Zora/Math.hs:194:1: Warning: Tab character
+
+Zora/Math.hs:195:1: Warning: Tab character
+
+Zora/Math.hs:196:1: Warning: Tab character
+
+Zora/Math.hs:208:1: Warning: Tab character
+
+Zora/Math.hs:209:1: Warning: Tab character
+
+Zora/Math.hs:210:1: Warning: Tab character
+
+Zora/Math.hs:211:1: Warning: Tab character
+
+Zora/Math.hs:212:1: Warning: Tab character
+
+Zora/Math.hs:213:1: Warning: Tab character
+
+Zora/Math.hs:214:1: Warning: Tab character
+
+Zora/Math.hs:215:1: Warning: Tab character
+
+Zora/Math.hs:217:1: Warning: Tab character
+
+Zora/Math.hs:218:1: Warning: Tab character
+
+Zora/Math.hs:219:1: Warning: Tab character
+
+Zora/Math.hs:220:1: Warning: Tab character
+
+Zora/Math.hs:221:1: Warning: Tab character
+
+Zora/Math.hs:222:1: Warning: Tab character
+
+Zora/Math.hs:223:1: Warning: Tab character
+
+Zora/Math.hs:224:1: Warning: Tab character
+
+Zora/Math.hs:226:1: Warning: Tab character
+
+Zora/Math.hs:227:1: Warning: Tab character
+
+Zora/Math.hs:234:1: Warning: Tab character
+
+Zora/Math.hs:235:1: Warning: Tab character
+
+Zora/Math.hs:236:1: Warning: Tab character
+
+Zora/Math.hs:237:1: Warning: Tab character
+
+Zora/Math.hs:238:1: Warning: Tab character
+
+Zora/Math.hs:239:1: Warning: Tab character
+
+Zora/Math.hs:244:1: Warning: Tab character
+
+Zora/Math.hs:245:1: Warning: Tab character
+
+Zora/Math.hs:246:1: Warning: Tab character
+
+Zora/Math.hs:247:1: Warning: Tab character
+
+Zora/Math.hs:248:1: Warning: Tab character
+
+Zora/Math.hs:249:1: Warning: Tab character
+
+Zora/Math.hs:250:1: Warning: Tab character
+
+Zora/Math.hs:251:1: Warning: Tab character
+
+Zora/Math.hs:252:1: Warning: Tab character
+
+Zora/Math.hs:253:1: Warning: Tab character
+
+Zora/Math.hs:254:1: Warning: Tab character
+
+Zora/Math.hs:262:1: Warning: Tab character
+
+Zora/Math.hs:263:1: Warning: Tab character
+
+Zora/Math.hs:264:1: Warning: Tab character
+
+Zora/Math.hs:265:1: Warning: Tab character
+
+Zora/Math.hs:270:1: Warning: Tab character
+
+Zora/Math.hs:271:1: Warning: Tab character
+
+Zora/Math.hs:272:1: Warning: Tab character
+
+Zora/Math.hs:273:1: Warning: Tab character
+
+Zora/Math.hs:274:1: Warning: Tab character
+
+Zora/Math.hs:275:1: Warning: Tab character
+
+Zora/Math.hs:276:1: Warning: Tab character
+
+Zora/Math.hs:281:1: Warning: Tab character
+
+Zora/Math.hs:282:1: Warning: Tab character
+
+Zora/Math.hs:283:1: Warning: Tab character
+
+Zora/Math.hs:284:1: Warning: Tab character
+
+Zora/Math.hs:285:1: Warning: Tab character
+
+Zora/Math.hs:303:1: Warning: Tab character
+
+Zora/Math.hs:304:1: Warning: Tab character
+
+Zora/Math.hs:305:1: Warning: Tab character
+
+Zora/Math.hs:306:1: Warning: Tab character
+
+Zora/Math.hs:307:1: Warning: Tab character
+
+Zora/Math.hs:308:1: Warning: Tab character
+
+Zora/Math.hs:309:1: Warning: Tab character
+
+Zora/Math.hs:310:1: Warning: Tab character
+
+Zora/Math.hs:320:1: Warning: Tab character
+
+Zora/Math.hs:321:1: Warning: Tab character
+
+Zora/Math.hs:322:1: Warning: Tab character
+
+Zora/Math.hs:361:1: Warning: Tab character
+
+Zora/Math.hs:362:1: Warning: Tab character
+
+Zora/Math.hs:363:1: Warning: Tab character
+
+Zora/Math.hs:364:1: Warning: Tab character
+
+Zora/Math.hs:365:1: Warning: Tab character
+
+Zora/Math.hs:366:1: Warning: Tab character
+
+Zora/Math.hs:382:1: Warning: Tab character
+
+Zora/Math.hs:383:1: Warning: Tab character
+
+Zora/Math.hs:384:1: Warning: Tab character
+
+Zora/Math.hs:385:1: Warning: Tab character
+
+Zora/Math.hs:386:1: Warning: Tab character
+
+Zora/Math.hs:387:1: Warning: Tab character
+
+Zora/Math.hs:389:1: Warning: Tab character
+
+Zora/Math.hs:390:1: Warning: Tab character
+
+Zora/Math.hs:391:1: Warning: Tab character
+
+Zora/Math.hs:392:1: Warning: Tab character
+
+Zora/Math.hs:393:1: Warning: Tab character
+
+Zora/Math.hs:394:1: Warning: Tab character
+
+Zora/Math.hs:395:1: Warning: Tab character
+
+Zora/Math.hs:396:1: Warning: Tab character
+
+Zora/Math.hs:397:1: Warning: Tab character
+
+Zora/Math.hs:398:1: Warning: Tab character
+
+Zora/Math.hs:410:1: Warning: Tab character
+
+Zora/Math.hs:411:1: Warning: Tab character
+
+Zora/Math.hs:412:1: Warning: Tab character
+
+Zora/Math.hs:413:1: Warning: Tab character
+
+Zora/Math.hs:414:1: Warning: Tab character
+
+Zora/Math.hs:415:1: Warning: Tab character
+
+Zora/Math.hs:420:1: Warning: Tab character
+
+Zora/Math.hs:421:1: Warning: Tab character
+
+Zora/Math.hs:422:1: Warning: Tab character
+
+Zora/Math.hs:423:1: Warning: Tab character
+
+Zora/Math.hs:451:1: Warning: Tab character
+
+Zora/Math.hs:452:1: Warning: Tab character
+
+Zora/Math.hs:453:1: Warning: Tab character
+
+Zora/Math.hs:454:1: Warning: Tab character
+
+Zora/Math.hs:455:1: Warning: Tab character
+
+Zora/Math.hs:459:1: Warning: Tab character
+
+Zora/Math.hs:460:1: Warning: Tab character
+
+Zora/Math.hs:461:1: Warning: Tab character
+
+Zora/Math.hs:462:1: Warning: Tab character
+
+Zora/Math.hs:463:1: Warning: Tab character
+
+Zora/Math.hs:464:1: Warning: Tab character
+
+Zora/Math.hs:471:1: Warning: Tab character
+
+Zora/Math.hs:472:1: Warning: Tab character
+
+Zora/Math.hs:477:1: Warning: Tab character
+
+Zora/Math.hs:478:1: Warning: Tab character
+
+Zora/Math.hs:479:1: Warning: Tab character
+
+Zora/Math.hs:480:1: Warning: Tab character
+
+Zora/Math.hs:482:1: Warning: Tab character
+
+Zora/Math.hs:483:1: Warning: Tab character
+
+Zora/Math.hs:490:1: Warning: Tab character
+
+Zora/Math.hs:492:1: Warning: Tab character
+
+Zora/Math.hs:493:1: Warning: Tab character
+
+Zora/Math.hs:494:1: Warning: Tab character
+
+Zora/Math.hs:495:1: Warning: Tab character
+
+Zora/Math.hs:496:1: Warning: Tab character
+
+Zora/Math.hs:497:1: Warning: Tab character
+
+Zora/Math.hs:498:1: Warning: Tab character
+
+Zora/Math.hs:499:1: Warning: Tab character
+
+Zora/Math.hs:500:1: Warning: Tab character
+
+Zora/Math.hs:501:1: Warning: Tab character
+
+Zora/Math.hs:502:1: Warning: Tab character
+
+Zora/Math.hs:503:1: Warning: Tab character
+
+Zora/Math.hs:505:1: Warning: Tab character
+
+Zora/Math.hs:506:1: Warning: Tab character
+
+Zora/Math.hs:507:1: Warning: Tab character
+
+Zora/Math.hs:508:1: Warning: Tab character
+
+Zora/Math.hs:509:1: Warning: Tab character
+
+Zora/Math.hs:510:1: Warning: Tab character
+
+Zora/Math.hs:512:1: Warning: Tab character
+
+Zora/Math.hs:513:1: Warning: Tab character
+
+Zora/Math.hs:514:1: Warning: Tab character
+
+Zora/Math.hs:515:1: Warning: Tab character
+
+Zora/Math.hs:516:1: Warning: Tab character
+
+Zora/Math.hs:517:1: Warning: Tab character
+
+Zora/Math.hs:518:1: Warning: Tab character
+
+Zora/Math.hs:519:1: Warning: Tab character
+
+Zora/Math.hs:520:1: Warning: Tab character
+
+Zora/Math.hs:521:1: Warning: Tab character
+
+Zora/Math.hs:523:1: Warning: Tab character
+
+Zora/Math.hs:524:1: Warning: Tab character
+
+Zora/Math.hs:528:1: Warning: Tab character
+
+Zora/Math.hs:529:1: Warning: Tab character
+
+Zora/Math.hs:530:1: Warning: Tab character
+
+Zora/Math.hs:531:1: Warning: Tab character
+
+Zora/Math.hs:532:1: Warning: Tab character
+
+Zora/Math.hs:534:1: Warning: Tab character
+
+Zora/Math.hs:535:1: Warning: Tab character
+
+Zora/Math.hs:537:1: Warning: Tab character
+
+Zora/Math.hs:538:1: Warning: Tab character
+
+Zora/Math.hs:539:1: Warning: Tab character
+
+Zora/Math.hs:540:1: Warning: Tab character
+
+Zora/Math.hs:541:1: Warning: Tab character
+
+Zora/Math.hs:543:1: Warning: Tab character
+
+Zora/Math.hs:544:1: Warning: Tab character
+
+Zora/Math.hs:545:1: Warning: Tab character
+
+Zora/Math.hs:546:1: Warning: Tab character
+
+Zora/Math.hs:547:1: Warning: Tab character
+
+Zora/Math.hs:551:1: Warning: Tab character
+
+Zora/Math.hs:552:1: Warning: Tab character
+
+Zora/Math.hs:553:1: Warning: Tab character
+
+Zora/Math.hs:555:1: Warning: Tab character
+
+Zora/Math.hs:556:1: Warning: Tab character
+In-place registering Zora-1.2.0...
+Installing library in
+/Users/brett/Desktop/Code/github/project-euler/.stack-work/install/x86_64-osx/lts-3.15/7.10.2/lib/x86_64-osx-ghc-7.10.2/Zora-1.2.0-Gc1HYHDh2Gr80IYmSUxLPG
+Registering Zora-1.2.0...

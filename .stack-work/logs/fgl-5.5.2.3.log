@@ -1,0 +1,35 @@
+Configuring fgl-5.5.2.3...
+Building fgl-5.5.2.3...
+Preprocessing library fgl-5.5.2.3...
+[ 1 of 28] Compiling Paths_fgl        ( .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/autogen/Paths_fgl.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Paths_fgl.o )
+[ 2 of 28] Compiling Data.Graph.Inductive.Internal.Thread ( Data/Graph/Inductive/Internal/Thread.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Internal/Thread.o )
+[ 3 of 28] Compiling Data.Graph.Inductive.Graph ( Data/Graph/Inductive/Graph.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Graph.o )
+[ 4 of 28] Compiling Data.Graph.Inductive.Basic ( Data/Graph/Inductive/Basic.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Basic.o )
+[ 5 of 28] Compiling Data.Graph.Inductive.PatriciaTree ( Data/Graph/Inductive/PatriciaTree.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/PatriciaTree.o )
+[ 6 of 28] Compiling Data.Graph.Inductive.Monad ( Data/Graph/Inductive/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Monad.o )
+[ 7 of 28] Compiling Data.Graph.Inductive.Monad.IOArray ( Data/Graph/Inductive/Monad/IOArray.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Monad/IOArray.o )
+[ 8 of 28] Compiling Data.Graph.Inductive.Example ( Data/Graph/Inductive/Example.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Example.o )
+[ 9 of 28] Compiling Data.Graph.Inductive.NodeMap ( Data/Graph/Inductive/NodeMap.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/NodeMap.o )
+[10 of 28] Compiling Data.Graph.Inductive.Query.ArtPoint ( Data/Graph/Inductive/Query/ArtPoint.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/ArtPoint.o )
+[11 of 28] Compiling Data.Graph.Inductive.Query.DFS ( Data/Graph/Inductive/Query/DFS.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/DFS.o )
+[12 of 28] Compiling Data.Graph.Inductive.Query.BCC ( Data/Graph/Inductive/Query/BCC.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/BCC.o )
+[13 of 28] Compiling Data.Graph.Inductive.Query.Dominators ( Data/Graph/Inductive/Query/Dominators.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/Dominators.o )
+[14 of 28] Compiling Data.Graph.Inductive.Query.Indep ( Data/Graph/Inductive/Query/Indep.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/Indep.o )
+[15 of 28] Compiling Data.Graph.Inductive.Query.Monad ( Data/Graph/Inductive/Query/Monad.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/Monad.o )
+[16 of 28] Compiling Data.Graph.Inductive.Query.TransClos ( Data/Graph/Inductive/Query/TransClos.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/TransClos.o )
+[17 of 28] Compiling Data.Graph.Inductive.Tree ( Data/Graph/Inductive/Tree.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Tree.o )
+[18 of 28] Compiling Data.Graph.Inductive.Internal.RootPath ( Data/Graph/Inductive/Internal/RootPath.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Internal/RootPath.o )
+[19 of 28] Compiling Data.Graph.Inductive.Internal.Queue ( Data/Graph/Inductive/Internal/Queue.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Internal/Queue.o )
+[20 of 28] Compiling Data.Graph.Inductive.Query.BFS ( Data/Graph/Inductive/Query/BFS.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/BFS.o )
+[21 of 28] Compiling Data.Graph.Inductive.Query.MaxFlow ( Data/Graph/Inductive/Query/MaxFlow.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/MaxFlow.o )
+[22 of 28] Compiling Data.Graph.Inductive.Query.MaxFlow2 ( Data/Graph/Inductive/Query/MaxFlow2.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/MaxFlow2.o )
+[23 of 28] Compiling Data.Graph.Inductive.Internal.Heap ( Data/Graph/Inductive/Internal/Heap.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Internal/Heap.o )
+[24 of 28] Compiling Data.Graph.Inductive.Query.MST ( Data/Graph/Inductive/Query/MST.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/MST.o )
+[25 of 28] Compiling Data.Graph.Inductive.Query.SP ( Data/Graph/Inductive/Query/SP.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/SP.o )
+[26 of 28] Compiling Data.Graph.Inductive.Query.GVD ( Data/Graph/Inductive/Query/GVD.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query/GVD.o )
+[27 of 28] Compiling Data.Graph.Inductive.Query ( Data/Graph/Inductive/Query.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive/Query.o )
+[28 of 28] Compiling Data.Graph.Inductive ( Data/Graph/Inductive.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Graph/Inductive.o )
+In-place registering fgl-5.5.2.3...
+Installing library in
+/Users/brett/.stack/snapshots/x86_64-osx/lts-3.15/7.10.2/lib/x86_64-osx-ghc-7.10.2/fgl-5.5.2.3-5kh7Ffsnjax0Ppv4qaraEf
+Registering fgl-5.5.2.3...

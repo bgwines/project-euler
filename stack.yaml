@@ -1,0 +1,8 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+extra-deps:
+- Zora-1.2.0
+- graphviz-2999.18.0.2
+resolver: lts-3.15
