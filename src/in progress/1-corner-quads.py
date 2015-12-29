@@ -68,19 +68,20 @@ border_z = (n - 1) * (m - 1) * 2 * 3 * 2
 
 ##############################
 
-(zn, zm) = (m, 1)
+(n, m) = (3, 3)
+(zm, zn) = (2, 1)
 
 # verified!!!1!!1!11!!!!!
 oa = 0.5 * (zn * zm + zn + zm - fractions.gcd(zn, zm))
+
+# verified!!!1!!1!11!!!!!
+oc = 0.5 * (zn * zm + zn + zm - fractions.gcd(zn, zm))
 
 # verified!!!1!!1!11!!!!!
 b_i = 0.5 * (m * n - n - m - fractions.gcd(n,m)) + 1
 
 # verified!!!1!!1!11!!!!!
 b_o = n + m - 2
-
-# verified!!!1!!1!11!!!!!
-oc = 0.5 * (zn * zm + zn + zm - fractions.gcd(zn, zm))
 
 # verified!!!1!!1!11!!!!!
 d = (m - zm + 1) * (zn + 1) - (m - zm + 1) - zn - 1

@@ -109,15 +109,19 @@ def num_2_corner_quads_diag_cvx(n, m):
     # `* 3` for 3 sides for w
     # `* 2` for other z locations
     # `* 2` for other diagonal
-    border_z = (n - 1) * (m - 1) * 2 * 3 * 2
+    border_z_quads = (n - 1) * (m - 1) * 2 * 3 * 2
 
-    return sum_oa + sum_oc + sum_d + sum_b_i + sum_b_o + border_z
+    return sum_oa + sum_oc + sum_d + sum_b_i + sum_b_o + border_z_quads
 
 def num_2_corner_quads_diag_cve(n, m):
     # inner z
 
+    # below coment is VERIFIED
     # (n + 1) * (m + 1) - (oa + b_i + b_o + oc + d + 3 + gcd_table[n][m] + 1)
-    all_pts_sum = (n + 1) * (m + 1) * (n - 1) * (m - 1)
+
+    # (* 2) for other half of inner z
+    # stop double-guessing yourself here; this is right
+    all_inner_z_pts_sum = 2 * 0.5 * (m + 1) * (n**2 - 1) * (2 * m - n - 2)
 
     # round up (even if is int; int() rounds down)
     # n - [...] for opposite direction of n-indexing compared to cartesian plane
@@ -138,9 +142,14 @@ def num_2_corner_quads_diag_cve(n, m):
     # verified for (2, 2) and (3, 3) and (4, 4)!!! THIS IS INTERIOR Z ONLY
     sum_b_o = 2 * 0.5 * (n - 1) * (4 + 2 * m**2 + m * (n - 6) - n**2)
 
-    # TODO: outer z
+    inner_z_interior_ws = all_inner_z_pts_sum - sum_oa - sum_oc - sum_d - sum_b_i - sum_b_o
 
-    return all_pts_sum - sum_oa - sum_oc - sum_d - sum_b_i - sum_b_o
+    # border z
+
+    outer_z_interior_ws
+
+    return inner_z_interior_ws + outer_z_interior_ws
+
 
 def num_2_corner_quads_diag(n, m):
     return num_2_corner_quads_diag_cvx(n, m)\
