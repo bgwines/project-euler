@@ -32,13 +32,13 @@ def takeWhile(p, xs):
         result.append(x)
     return result
 
-sUB = 300 #5000
+sUB = 50 #5000
 
 s = takeWhile(lambda p: p < sUB, pyprimes.primes())
 
 # | Number of ways to form `n` as a summation of primes less than `maxPrime`
 memo = dict()
-# @profile
+@profile
 def numFormations(n, maxPrime):
     if (n == 0):
         return 1 # formation is the empty set
@@ -55,21 +55,25 @@ def numFormations(n, maxPrime):
     memo[(n, maxPrime)] = result
     return result
 
+@profile
 def main():
     print "S = takeWhile (< ", sUB, ") P.primes"
     print "Number of subsets of S that sum to a prime number: "
 
     result = 0
     ssum = sum(s)
+    maxUsablePrime = max(s)
     for p in pyprimes.primes():
         # `sum s` is for the subset that is `S`; the maximal subset
         if not p <= ssum:
             break
-
+        r = numFormations(p, maxUsablePrime + 1)
+        # print 'f(',p,') = ', r
         # `+ 1` because of noninclusiveness
-        result += numFormations(p, p + 1)
+        result += r#numFormations(p, p + 1)
         result %= 10000000000000000
     print result
+    print 'cache size: ', len(memo)
 
 if __name__ == '__main__':
     main()
