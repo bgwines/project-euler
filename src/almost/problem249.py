@@ -1,27 +1,27 @@
+''' Prime Subset Sums
+Problem 249
+Let S = {2, 3, 5, ..., 4999} be the set of prime numbers less than 5000.
+
+Find the number of subsets of S, the sum of whose elements is a prime number.
+Enter the rightmost 16 digits as your answer.
+'''
 
 import pdb
 import pyprimes
 
 '''
-Let S = {2, 3, 5, ..., 4999} be the set of prime numbers less than 5000.
-
-Find the number of subsets of S, the sum of whose elements is a prime number. Enter the rightmost 16 digits as your answer.
-'''
-
-'''
 1548136 # desired sum of S
 ...
 8 |
-7 |x x   .   .
-6 |x x   x   x
-5 |x .   .   .
-4 |x x   x   x
-3 |x .   .   .
-2 |. .   .   .
+7 |
+6 |
+5 |  <8 billion entries>
+4 |
+3 |
+2 |
 1 |
-0 |
-  ######
-   2 3   5   7...4999 # max usable prime (sUB)
+0 |______________________
+   1 2 3 4 5 6 7 ... 4999 # max usable prime (sUB)
 '''
 
 def takeWhile(p, xs):
@@ -32,19 +32,30 @@ def takeWhile(p, xs):
         result.append(x)
     return result
 
-sUB = 50 #5000
+sUB = 200 #5000
 
 s = takeWhile(lambda p: p < sUB, pyprimes.primes())
 
+hits = 0
+misses = 0
+
 # | Number of ways to form `n` as a summation of primes less than `maxPrime`
+# (note the non-inclusiveness in the second parameter)
 memo = dict()
-@profile
+# @profile
 def numFormations(n, maxPrime):
     if (n == 0):
         return 1 # formation is the empty set
 
-    if (n, maxPrime) in memo:
-        return memo[(n, maxPrime)]
+    global s
+    global hits
+    global misses
+
+    cachedNumFormations = memo.get((n, maxPrime))
+    if cachedNumFormations is not None:
+        hits += 1
+        return cachedNumFormations
+    misses += 1
 
     result = 0
     for p in s:
@@ -52,13 +63,19 @@ def numFormations(n, maxPrime):
             break
         result += numFormations(n - p, p)
         result %= 10000000000000000
+    # print "f(", n, ",", maxPrime, ") = ", result
     memo[(n, maxPrime)] = result
     return result
 
-@profile
+# @profile
 def main():
+    global s
+    global sUB
+    global hits
+    global misses
+
     print "S = takeWhile (< ", sUB, ") P.primes"
-    print "Number of subsets of S that sum to a prime number: "
+    print "Number of subsets of S that sum to a prime number: ",
 
     result = 0
     ssum = sum(s)
@@ -67,13 +84,14 @@ def main():
         # `sum s` is for the subset that is `S`; the maximal subset
         if not p <= ssum:
             break
-        r = numFormations(p, maxUsablePrime + 1)
-        # print 'f(',p,') = ', r
+
         # `+ 1` because of noninclusiveness
-        result += r#numFormations(p, p + 1)
+        result += numFormations(p, min(p + 1, maxUsablePrime + 1))
         result %= 10000000000000000
     print result
-    print 'cache size: ', len(memo)
+    # print 'cache size: ', len(memo)
+    print 'hits: ', hits
+    print 'misses: ', misses
 
 if __name__ == '__main__':
     main()

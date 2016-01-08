@@ -1,0 +1,38 @@
+PROJECT_NAME           = "primesieve"
+PROJECT_NUMBER         = 5.6.0
+INPUT                  = /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/doc/mainpage.dox \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve.hpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve.h \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve/Callback.hpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve/iterator.hpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve/primesieve_error.hpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/include/primesieve/primesieve_iterator.h \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/callback_primes.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/count_primes.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/primesieve_iterator.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/nth_prime.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/previous_prime.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/cpp/store_primes_in_vector.cpp \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/c/count_primes.c \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/c/previous_prime.c \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/c/primesieve_iterator.c \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/c/nth_prime.c \
+                         /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples/c/store_primes_in_array.c
+HTML_INDEX_NUM_ENTRIES = 3
+HTML_TIMESTAMP         = NO
+JAVADOC_AUTOBRIEF      = YES
+MULTILINE_CPP_IS_BRIEF = NO
+SHOW_NAMESPACES        = YES
+VERBATIM_HEADERS       = NO
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+FILE_PATTERNS          = *.cpp *.c *.h *.hpp
+EXCLUDE_SYMBOLS        = primesieve_generate_next_primes \
+                         primesieve_generate_previous_primes
+RECURSIVE              = NO
+EXAMPLE_PATTERNS       = *.cpp *.c
+EXAMPLE_PATH           = /Users/brett/Desktop/Code/github/project-euler/src/almost/primesieve-5.6.0/examples
+EXAMPLE_RECURSIVE      = YES
+GENERATE_LATEX         = NO
+FULL_PATH_NAMES        = NO
+HAVE_DOT               = YES
